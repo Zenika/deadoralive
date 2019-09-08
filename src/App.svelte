@@ -9,21 +9,32 @@
 		const fetchJSON = async (url) => {
 			const res = await fetch(url);
 			return res.json();
-		}
+		};
+
+		const prefetchImage = url => new Promise((resolve, reject) => {
+			var preloadLink = document.createElement('link');
+			preloadLink.rel = 'preload';
+			preloadLink.as = 'image';
+			preloadLink.href = url;
+			preloadLink.onload = resolve;
+			document.head.appendChild(preloadLink);
+		});
+
+		const fetchRockstar = async (title) => {
+			const doc = await wtf.fetch(title);
+			const infobox = doc.infobox(0);
+			const image = doc.images(0).thumb();
+			await prefetchImage(image);
+			return {
+				name: infobox.get('name').text(),
+				dead: Boolean(infobox.get('death_date')),
+				image,
+			};
+		};
 
 		rockstars = (async () => {
 			const titles = shuffle(await fetchJSON(`rockstars.json`));
-			const docs = await Promise.all(titles.map(title => wtf.fetch(title)));
-			return docs
-				.map(doc => ({
-					infobox: doc.infobox(0),
-					image: doc.images(0),
-				}))
-				.map(({ infobox, image }) => ({
-					name: infobox.get('name').text(),
-					dead: Boolean(infobox.get('death_date')),
-					image: image.thumb(),
-				}));
+			return Promise.all(titles.map(fetchRockstar));
 		})();
 	});
 </script>
