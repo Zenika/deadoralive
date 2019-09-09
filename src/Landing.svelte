@@ -3,11 +3,16 @@
 
     const dispatch = createEventDispatcher();
 
-    let game = { player: {} };
+    const newGame = () => ({
+        player: {},
+        score: 0,
+    });
+
+    let game = newGame();
     
-    function createNewGame(e) {
+    function createNewGame() {
         dispatch('newGame', game);
-        game = { player: {} };
+        game = newGame();
     }
 </script>
 
@@ -26,5 +31,5 @@
         <option value="normal">Normal</option>
         <option value="hard">Hard</option>
     </select>
-    <button type="submit">Start</button>
+    <button type="submit">Play</button>
 </form>

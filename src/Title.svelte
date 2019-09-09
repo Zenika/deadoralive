@@ -1,11 +1,6 @@
 <style>
 	h1 {
-		margin: 0;
-		text-align: center;
-		font-family: Art Dystopia;
-		font-size: 120px;
-        font-weight: normal;
-        filter: drop-shadow(0 0 .2rem rgba(255, 255, 255, 1));
+        font-size: 3em;
 	}
 
     .dead {

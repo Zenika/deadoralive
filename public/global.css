@@ -19,6 +19,7 @@ body {
 	background-size: cover;
 	display: flex;
 	flex-direction: column;
+	font-size: 32px;
 }
 
 a {
@@ -68,4 +69,12 @@ button:active {
 
 button:focus {
 	border-color: #666;
+}
+
+h1, h2 {
+	text-align: center;
+	font-family: Art Dystopia;
+	font-weight: normal;
+	filter: drop-shadow(0 0 .2rem rgba(255, 255, 255, 1));
+	margin: 0;
 }

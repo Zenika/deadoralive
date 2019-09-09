@@ -46,7 +46,7 @@
 
 <style>
 	header {
-		padding-top: 60px;
+		padding-top: 30px;
 	}
 
 	main {
@@ -54,6 +54,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		position: relative;
+		flex-direction: column;
 	}
 </style>
 
