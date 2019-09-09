@@ -1,9 +1,33 @@
 <script>
+    import { createEventDispatcher, onDestroy } from 'svelte';
+    
+    const dispatch = createEventDispatcher();
+    
     export let rockstar;
 
-    import { createEventDispatcher } from 'svelte';
+    let timeout;
+    let nameTimeout;
+    let showName;
+    let timer;
+    let timerInterval;
 
-    const dispatch = createEventDispatcher();
+    const clearAllTimeouts = () => {
+        clearTimeout(timeout);
+        clearTimeout(nameTimeout);
+        clearInterval(timerInterval);
+    };
+
+    onDestroy(clearAllTimeouts);
+
+    $: if (rockstar) {
+        clearAllTimeouts();
+        showName = false;
+        timer = 6660;
+
+        timeout = setTimeout(() => dispatch('wrong'), 6660);
+        nameTimeout = setTimeout(() => { showName = true }, 3330);
+        timerInterval = setInterval(() => { timer -= 50 }, 50);
+    }
 
     const answer = (dead) => {
         dispatch(dead === rockstar.dead ? 'right' : 'wrong');
@@ -11,7 +35,7 @@
 </script>
 
 <style>
-    .rockstar {
+    .container {
         text-align: center;
         display: flex;
         align-items: center;
@@ -20,16 +44,26 @@
         justify-content: space-evenly;
     }
 
-    .rockstar > button {
-        width: 200px;
+    .rockstar {
+        width: 40%;
+    }
+
+    .rockstar img {
+        height: auto;
+        width: 30vh;
+    }
+
+    .container > button {
+        width: 25%;
     }
 </style>
 
-<div class="rockstar">
+<div class="container">
     <button on:click={() => answer(true)}>Dead</button>
-    <div>
-        <img src={rockstar.image} alt="Rockstar picture" height="400">
-        <p>{rockstar.name}</p>
+    <div class="rockstar">
+        <p><progress value={6660 - timer} max="6660"></progress></p>
+        <p><img src={rockstar.image} alt="Rockstar picture"></p>
+        <p style="visibility: {showName ? 'visible' : 'hidden'}">{rockstar.name}</p>
     </div>
     <button on:click={() => answer(false)}>Alive</button>
 </div>
