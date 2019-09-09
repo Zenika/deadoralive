@@ -1,11 +1,13 @@
 <script>
 	import { onMount } from 'svelte';
 	import wtf from 'wtf_wikipedia';
-	import shuffle from 'lodash/shuffle';
 	import Title from './Title.svelte';
 	import Loader from './Loader.svelte';
+	import Landing from './Landing.svelte';
+	import Game from './Game.svelte';
 
 	let rockstars = [];
+	let game = null;
 
 	onMount(async () => {
 		const fetchJSON = async (url) => {
@@ -19,6 +21,7 @@
 			preloadLink.as = 'image';
 			preloadLink.href = url;
 			preloadLink.onload = resolve;
+			preloadLink.onerror = () => reject(Error('Error while prefetching image'));
 			document.head.appendChild(preloadLink);
 		});
 
@@ -35,7 +38,7 @@
 		};
 
 		rockstars = (async () => {
-			const titles = shuffle(await fetchJSON(`rockstars.json`));
+			const titles = await fetchJSON(`rockstars.json`);
 			return Promise.all(titles.map(fetchRockstar));
 		})();
 	});
@@ -62,11 +65,11 @@
 	{#await rockstars}
 		<Loader />
 	{:then rockstars}
-		<ul>
-			{#each rockstars as rockstar}
-				<li>{rockstar.name} is {rockstar.dead ? 'dead' : 'alive'}</li>
-			{/each}
-		</ul>
+		{#if game}
+			<Game {game} />
+		{:else}
+			<Landing on:newGame={event => game = event.detail} />
+		{/if}
 	{:catch error}
 		<p style="color: red">{error.message}</p>
 	{/await}
