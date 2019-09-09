@@ -1,40 +1,46 @@
 <script>
-    import Rules from './Rules.svelte'
+    import shuffle from 'lodash/shuffle';
+    import Rules from './Rules.svelte';
+    import Header from './Header.svelte';
+    import Rockstar from './Rockstar.svelte'
 
     export let game;
     export let rockstars;
+    let over = false;
 
+    let gameRockstars;
     let rockstar;
+
+    function start() {
+        gameRockstars = shuffle(rockstars);
+        next();
+    }
+
+    function next() {
+        if (!gameRockstars.length) over = true;
+
+        rockstar = gameRockstars.shift();
+    }
 </script>
 
 <style>
-    .header {
-        display: flex;
-        padding: .5em 1em;
-        width: 100%;
-        box-sizing: border-box;
-        justify-content: space-between;
-    }
-
     .game {
         flex-grow: 1;
     }
-
-    .player_name, .score {
-        font-family: Art Dystopia;
-        font-weight: normal;
-    }
 </style>
 
-<div class="header">
-    <div>Player: <span class="player_name">{game.player.name}</span></div>
-    <div>Score: <span class="score">{game.score}</span></div>
-</div>
+{#if over}
+    <h2>GAME OVER</h2>
+{:else}
+    <Header {game} />
 
-<div class="game">
-    {#if rockstar}
-        TODO
-    {:else}
-        <Rules on:start={() => rockstar = {}} />
-    {/if}
-</div>
+    <div class="game">
+        {#if rockstar}
+            <Rockstar {rockstar} />
+        {:else}
+            <Rules on:start={start} />
+        {/if}
+    </div>
+{/if}
+
+
