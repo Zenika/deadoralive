@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import wtf from 'wtf_wikipedia';
 	import shuffle from 'lodash/shuffle';
+	import Title from './Title.svelte';
+	import Loader from './Loader.svelte';
 
 	let rockstars = [];
 
@@ -39,15 +41,33 @@
 	});
 </script>
 
-<h1>Dead or Alive</h1>
-{#await rockstars}
-	Loading rockstars...
-{:then rockstars}
-	<ul>
-		{#each rockstars as rockstar}
-			<li><img src={rockstar.image} alt={rockstar.name}> {rockstar.name} is {rockstar.dead ? 'dead' : 'alive'}</li>
-		{/each}
-	</ul>
-{:catch error}
-	<p style="color: red">{error.message}</p>
-{/await}
+<style>
+	header {
+		padding-top: 60px;
+	}
+
+	main {
+		flex-grow: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+</style>
+
+<header>
+	<Title />
+</header>
+
+<main>
+	{#await rockstars}
+		<Loader />
+	{:then rockstars}
+		<ul>
+			{#each rockstars as rockstar}
+				<li>{rockstar.name} is {rockstar.dead ? 'dead' : 'alive'}</li>
+			{/each}
+		</ul>
+	{:catch error}
+		<p style="color: red">{error.message}</p>
+	{/await}
+</main>
