@@ -4,7 +4,7 @@
 	import Title from './Title.svelte';
 	import Loader from './Loader.svelte';
 	import Landing from './Landing.svelte';
-	import Game from './Game.svelte';
+	import Game from './game';
 
 	let rockstars = [];
 	let game = null;
@@ -66,7 +66,7 @@
 		<Loader />
 	{:then rockstars}
 		{#if game}
-			<Game {game} />
+			<Game {rockstars} {game} />
 		{:else}
 			<Landing on:newGame={event => game = event.detail} />
 		{/if}
