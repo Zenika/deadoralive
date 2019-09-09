@@ -19,11 +19,16 @@
     .game {
         flex-grow: 1;
     }
+
+    .player_name, .score {
+        font-family: Art Dystopia;
+        font-weight: normal;
+    }
 </style>
 
 <div class="header">
-    <div>Player: {game.player.name}</div>
-    <div>Score: {game.score}</div>
+    <div>Player: <span class="player_name">{game.player.name}</span></div>
+    <div>Score: <span class="score">{game.score}</span></div>
 </div>
 
 <div class="game">
