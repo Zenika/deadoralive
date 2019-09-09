@@ -78,3 +78,11 @@ h1, h2 {
 	filter: drop-shadow(0 0 .2rem rgba(255, 255, 255, 1));
 	margin: 0;
 }
+
+h1 {
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 2.5em;
+}

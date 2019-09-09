@@ -1,8 +1,4 @@
 <style>
-	h1 {
-        font-size: 3em;
-	}
-
     .dead {
         color: #520000;
     }

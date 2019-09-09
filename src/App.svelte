@@ -8,6 +8,7 @@
 
 	let rockstars = [];
 	let game = null;
+	// let game = { player: { name: "test" }, score: 0 };
 
 	onMount(async () => {
 		const fetchJSON = async (url) => {
@@ -42,6 +43,8 @@
 			return Promise.all(titles.map(fetchRockstar));
 		})();
 	});
+
+	const clearGame = () => game = null;
 </script>
 
 <style>
@@ -68,7 +71,7 @@
 		<Loader />
 	{:then rockstars}
 		{#if game}
-			<Game {rockstars} {game} />
+			<Game {rockstars} {game} on:clearGame={clearGame} />
 		{:else}
 			<Landing on:newGame={event => game = event.detail} />
 		{/if}

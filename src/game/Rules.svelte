@@ -9,10 +9,6 @@
 </script>
 
 <style>
-    h2 {
-        font-size: 2em;
-    }
-
     .rules {
         text-align: center;
     }
@@ -24,5 +20,5 @@
     <p>For the first 3.33 seconds you have only the rockstar's picture, then you also have her/his name.</p>
     <p>The faster you go, the more points you earn.</p>
     <p>The longer your good answers streak, the more points you earn.</p>
-    <p><button on:click={start}>OK, let's rock !</button></p>
+    <p><button on:click={start}>OK, let's rock!</button></p>
 </div>

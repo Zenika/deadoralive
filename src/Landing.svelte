@@ -31,5 +31,5 @@
         <option value="normal">Normal</option>
         <option value="hard">Hard</option>
     </select>
-    <button type="submit">Play</button>
+    <button type="submit">Play!</button>
 </form>

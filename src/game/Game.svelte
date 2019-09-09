@@ -2,7 +2,8 @@
     import shuffle from 'lodash/shuffle';
     import Rules from './Rules.svelte';
     import Header from './Header.svelte';
-    import Rockstar from './Rockstar.svelte'
+    import Rockstar from './Rockstar.svelte';
+    import Over from './Over.svelte';
 
     export let game;
     export let rockstars;
@@ -11,32 +12,41 @@
     let gameRockstars;
     let rockstar;
 
-    function start() {
+    const next = () => {
+        if (!gameRockstars.length) over = true;
+        rockstar = gameRockstars.shift();
+    };
+
+    const start = () => {
         gameRockstars = shuffle(rockstars);
         next();
-    }
+    };
 
-    function next() {
-        if (!gameRockstars.length) over = true;
+    const right = () => {
+        game.score++;
+        next();
+    };
 
-        rockstar = gameRockstars.shift();
-    }
+    const wrong = () => {
+        next();
+    };
 </script>
 
 <style>
     .game {
         flex-grow: 1;
+        width: 100%;
     }
 </style>
 
 {#if over}
-    <h2>GAME OVER</h2>
+    <Over {game} on:clearGame />
 {:else}
     <Header {game} />
 
     <div class="game">
         {#if rockstar}
-            <Rockstar {rockstar} />
+            <Rockstar {rockstar} on:right={right} on:wrong={wrong} />
         {:else}
             <Rules on:start={start} />
         {/if}
