@@ -1,0 +1,20 @@
+version: 2.1
+
+jobs:
+  deploy:
+    docker:
+      - image: circleci/node:11
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn deploy
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+                branches:
+                  only:
+                    - master
