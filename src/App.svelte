@@ -31,8 +31,9 @@
 			const infobox = doc.infobox(0);
 			const image = doc.images(0).thumb();
 			await prefetchImage(image);
+			const name = infobox.get('name');
 			return {
-				name: infobox.get('name').text(),
+				name: name ? name.text() : title,
 				dead: Boolean(infobox.get('death_date')),
 				image,
 			};
