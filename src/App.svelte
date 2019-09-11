@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import wtf from 'wtf_wikipedia';
+	import JSON5 from 'json5';
 	import Title from './Title.svelte';
 	import Loader from './Loader.svelte';
 	import Landing from './Landing.svelte';
@@ -13,7 +14,7 @@
 	onMount(async () => {
 		const fetchJSON = async (url) => {
 			const res = await fetch(url);
-			return res.json();
+			return JSON5.parse(await res.text());
 		};
 
 		const prefetchImage = url => new Promise((resolve, reject) => {
