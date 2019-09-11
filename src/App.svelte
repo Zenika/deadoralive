@@ -41,7 +41,7 @@
 		};
 
 		rockstars = (async () => {
-			const titles = await fetchJSON(`rockstars.json`);
+			const titles = await fetchJSON(`rockstars.json5`);
 			return Promise.all(titles.map(fetchRockstar));
 		})();
 	});
