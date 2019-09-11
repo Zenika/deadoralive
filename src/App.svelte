@@ -18,13 +18,10 @@
 		};
 
 		const prefetchImage = url => new Promise((resolve, reject) => {
-			var preloadLink = document.createElement('link');
-			preloadLink.rel = 'preload';
-			preloadLink.as = 'image';
-			preloadLink.href = url;
-			preloadLink.onload = resolve;
-			preloadLink.onerror = () => reject(Error('Error while prefetching image'));
-			document.head.appendChild(preloadLink);
+			const image = new Image();
+			image.onload = () => resolve(image);
+			image.onerror = () => reject(Error('Error while prefetching image'));
+			image.src = url;
 		});
 
 		const fetchRockstar = async (title) => {
@@ -38,9 +35,8 @@
 			const imageObj = doc.images(0);
 			if (!imageObj) throw Error(`"${title}" wikipedia page has no image`);
 
-			const image = imageObj.thumb();
-			await prefetchImage(image);
-			
+			const image = await prefetchImage(imageObj.thumb());
+
 			return {
 				name: name ? name.text() : title,
 				dead: Boolean(infobox.get('death_date')),

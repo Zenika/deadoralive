@@ -62,7 +62,7 @@
     <button on:click={() => answer(true)}>Dead</button>
     <div class="rockstar">
         <p><progress value={6660 - timer} max="6660"></progress></p>
-        <p><img src={rockstar.image} alt="Rockstar picture"></p>
+        <p><img src={rockstar.image.src} alt="Rockstar picture"></p>
         <p style="visibility: {showName ? 'visible' : 'hidden'}">{rockstar.name}</p>
     </div>
     <button on:click={() => answer(false)}>Alive</button>
