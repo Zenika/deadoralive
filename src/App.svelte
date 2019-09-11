@@ -29,10 +29,18 @@
 
 		const fetchRockstar = async (title) => {
 			const doc = await wtf.fetch(title);
+			if (!doc) throw Error(`Unknown wikipedia page "${title}"`);
+
 			const infobox = doc.infobox(0);
-			const image = doc.images(0).thumb();
-			await prefetchImage(image);
+
 			const name = infobox.get('name');
+
+			const imageObj = doc.images(0);
+			if (!imageObj) throw Error(`"${title}" wikipedia page has no image`);
+
+			const image = imageObj.thumb();
+			await prefetchImage(image);
+			
 			return {
 				name: name ? name.text() : title,
 				dead: Boolean(infobox.get('death_date')),
