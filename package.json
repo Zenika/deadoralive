@@ -30,6 +30,8 @@
     "start": "sirv public --single",
     "start:dev": "sirv public --single --dev",
     "predeploy": "run-p build",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "predeploy:ci": "run-p build",
+    "deploy:ci": "firebase deploy --token \"$FIREBASE_TOKEN\""
   }
 }
