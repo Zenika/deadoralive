@@ -1,22 +1,17 @@
 <script>
 	import { onMount } from 'svelte';
 	import wtf from 'wtf_wikipedia';
-	import JSON5 from 'json5';
 	import Title from './Title.svelte';
 	import Loader from './Loader.svelte';
 	import Landing from './Landing.svelte';
 	import Game from './game';
+	import titles from './rockstars'
 
 	let rockstars = [];
 	let game = null;
 	// let game = { player: { name: "test" }, score: 0 };
 
 	onMount(async () => {
-		const fetchJSON = async (url) => {
-			const res = await fetch(url);
-			return JSON5.parse(await res.text());
-		};
-
 		const prefetchImage = url => new Promise((resolve, reject) => {
 			const image = new Image();
 			image.onload = () => resolve(image);
@@ -44,10 +39,7 @@
 			};
 		};
 
-		rockstars = (async () => {
-			const titles = await fetchJSON(`rockstars.json5`);
-			return Promise.all(titles.map(fetchRockstar));
-		})();
+		rockstars = Promise.all(titles.map(fetchRockstar));
 	});
 
 	const clearGame = () => game = null;
