@@ -1,5 +1,6 @@
 <script>
     import shuffle from 'lodash/shuffle';
+    import take from 'lodash/take';
     import Rules from './Rules.svelte';
     import Header from './Header.svelte';
     import Rockstar from './Rockstar.svelte';
@@ -18,7 +19,7 @@
     };
 
     const start = () => {
-        gameRockstars = shuffle(rockstars);
+        gameRockstars = take(shuffle(rockstars), 20);
         next();
     };
 
