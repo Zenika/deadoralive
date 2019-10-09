@@ -5,7 +5,7 @@
     const dispatch = createEventDispatcher();
 
     export let rockstar;
-    export let game;
+    export let difficulty;
 
     let maxtime = 6660;
     let timeout;
@@ -38,7 +38,7 @@
     onDestroy(clearAllTimeouts);
 
     $: if (rockstar) {
-        if (game.difficulty == 'hard') {
+        if (difficulty === 'hard') {
             button = shuffle(button);
         }
         clearAllTimeouts();
