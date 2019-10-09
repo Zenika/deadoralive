@@ -25,6 +25,7 @@
 
     const right = (evt) => {
         game.combo++;
+        game.bestcombo = Math.max(game.combo, game.bestcombo);
         game.score += (evt.detail.timer / 10) + (game.combo * 100);
         next();
     };

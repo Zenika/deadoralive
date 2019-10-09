@@ -19,6 +19,8 @@
     <p>
         Well done {game.player.name}, your score is {game.score}.
         <br>
+        Your best combo is {game.bestcombo}.
+        <br>
         You rock!
     </p>
     <p>
