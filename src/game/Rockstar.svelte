@@ -1,9 +1,11 @@
 <script>
     import { createEventDispatcher, onDestroy } from 'svelte';
+    import shuffle from 'lodash/shuffle';
 
     const dispatch = createEventDispatcher();
 
     export let rockstar;
+    export let game;
 
     let maxtime = 6660;
     let timeout;
@@ -13,6 +15,18 @@
     let timerInterval;
     let toolate;
     let toolateTimeout;
+    let button = [
+        {
+            value: false,
+            class: "alive",
+            text: "Alive",
+        },
+        {
+            value: true,
+            class: "dead",
+            text: "Dead",
+        },
+    ];
 
     const clearAllTimeouts = () => {
         clearTimeout(timeout);
@@ -24,6 +38,9 @@
     onDestroy(clearAllTimeouts);
 
     $: if (rockstar) {
+        if (game.difficulty == 'hard') {
+            button = shuffle(button);
+        }
         clearAllTimeouts();
         showName = false;
         toolate = false;
@@ -76,7 +93,7 @@
 </style>
 
 <div class="container">
-    <button on:click={() => answer(true)} class="dead">Dead</button>
+    <button on:click={() => answer(button[0].value)} class="{button[0].class}">{button[0].text}</button>
     <div class="rockstar">
         <p>
         {#if toolate}
@@ -88,5 +105,5 @@
         <p><img src={rockstar.image.src} alt="Rockstar picture"></p>
         <p style="visibility: {showName ? 'visible' : 'hidden'}">{rockstar.name}</p>
     </div>
-    <button on:click={() => answer(false)} class="alive">Alive</button>
+    <button on:click={() => answer(button[1].value)} class="{button[1].class}">{button[1].text}</button>
 </div>
