@@ -4,17 +4,21 @@
     const dispatch = createEventDispatcher();
 
     export let rockstar;
+    export let maxtime = 6660;
 
     let timeout;
     let nameTimeout;
     let showName;
     let timer;
     let timerInterval;
+    let toolate;
+    let toolateTimeout;
 
     const clearAllTimeouts = () => {
         clearTimeout(timeout);
         clearTimeout(nameTimeout);
         clearInterval(timerInterval);
+        clearInterval(toolateTimeout);
     };
 
     onDestroy(clearAllTimeouts);
@@ -22,15 +26,18 @@
     $: if (rockstar) {
         clearAllTimeouts();
         showName = false;
-        timer = 6660;
+        toolate = false;
+        timer = maxtime;
 
-        timeout = setTimeout(() => dispatch('wrong'), 6660);
-        nameTimeout = setTimeout(() => { showName = true }, 3330);
+        timeout = setTimeout(() => { toolate = true }, maxtime);
+        toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
+        nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
         timerInterval = setInterval(() => { timer -= 50 }, 50);
-    }
+    } 
 
     const answer = (dead) => {
-        dispatch(dead === rockstar.dead ? 'right' : 'wrong', { timer });
+        if (!toolate)
+            dispatch(dead === rockstar.dead ? 'right' : 'wrong', { timer });
     };
 </script>
 
@@ -70,7 +77,13 @@
 <div class="container">
     <button on:click={() => answer(true)} class="dead">Dead</button>
     <div class="rockstar">
-        <p><progress value={6660 - timer} max="6660"></progress></p>
+        <p>
+        {#if toolate}
+            <div>Too late !</div>
+        {:else}
+            <progress value={maxtime - timer} max={maxtime}></progress>
+        {/if}
+        </p>
         <p><img src={rockstar.image.src} alt="Rockstar picture"></p>
         <p style="visibility: {showName ? 'visible' : 'hidden'}">{rockstar.name}</p>
     </div>
