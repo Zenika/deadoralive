@@ -26,7 +26,7 @@
 
     const right = (evt) => {
         combo++;
-        game.score += (evt.detail.timer/10) + combo*100;
+        game.score += (evt.detail.timer / 10) + (combo * 100);
         next();
     };
 

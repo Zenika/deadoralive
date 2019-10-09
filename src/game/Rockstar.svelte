@@ -30,7 +30,7 @@
     }
 
     const answer = (dead) => {
-        dispatch(dead === rockstar.dead ? 'right' : 'wrong', {timer: timer});
+        dispatch(dead === rockstar.dead ? 'right' : 'wrong', { timer });
     };
 </script>
 
