@@ -9,7 +9,6 @@
     export let game;
     export let rockstars;
     let over = false;
-    let combo = 0;
 
     let gameRockstars;
     let rockstar;
@@ -25,13 +24,13 @@
     };
 
     const right = (evt) => {
-        combo++;
-        game.score += (evt.detail.timer / 10) + (combo * 100);
+        game.combo++;
+        game.score += (evt.detail.timer / 10) + (game.combo * 100);
         next();
     };
 
     const wrong = () => {
-        combo = 0;
+        game.combo = 0;
         next();
     };
 </script>

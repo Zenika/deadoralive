@@ -20,4 +20,5 @@
 <div class="header">
     <div>Player: <span class="player_name">{game.player.name}</span></div>
     <div>Score: <span class="score">{game.score}</span></div>
+    <div>Combo: <span class="score">{game.combo}</span></div>
 </div>
