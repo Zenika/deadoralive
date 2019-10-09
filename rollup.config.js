@@ -2,6 +2,7 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
+import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -23,6 +24,11 @@ export default {
 			css: css => {
 				css.write('public/bundle.css');
 			}
+		}),
+		replace({
+			'FIREBASE_API_KEY': process.env.FIREBASE_API_KEY,
+			'GOOGLE_ANALYTICS': process.env.GOOGLE_ANALYTICS,
+			'FIREBASE_PROJECT_ID': process.env.FIREBASE_PROJECT_ID,
 		}),
 
 		// If you have external dependencies installed from

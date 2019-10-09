@@ -22,9 +22,18 @@ npm run dev
 
 ## Deploy
 
+Create a firebase project
+
 Login to firebase :
 ```sh
 firebase login
+```
+
+Export environnement variable :
+```sh
+export FIREBASE_API_KEY=""
+export FIREBASE_PROJECT_ID=""
+export GOOGLE_ANALYTICS=""
 ```
 
 ```sh

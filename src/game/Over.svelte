@@ -1,9 +1,12 @@
 <script>
     import { createEventDispatcher } from 'svelte';
+    import { db } from '../firebase';
 
     const dispatch = createEventDispatcher();
 
     export let game;
+
+    db.collection("score").add(game);
 
     const clearGame = () => dispatch('clearGame')
 </script>
