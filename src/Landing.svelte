@@ -6,6 +6,7 @@
     const newGame = () => ({
         player: {},
         score: 0,
+        combo: 0,
     });
 
     let game = newGame();
