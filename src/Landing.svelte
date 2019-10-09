@@ -7,6 +7,7 @@
         player: {},
         score: 0,
         combo: 0,
+        bestcombo: 0,
     });
 
     let game = newGame();
