@@ -18,7 +18,7 @@
         clearTimeout(timeout);
         clearTimeout(nameTimeout);
         clearInterval(timerInterval);
-        clearInterval(toolateTimeout);
+        clearTimeout(toolateTimeout);
     };
 
     onDestroy(clearAllTimeouts);
@@ -33,7 +33,7 @@
         toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
         nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
         timerInterval = setInterval(() => { timer -= 50 }, 50);
-    } 
+    }
 
     const answer = (dead) => {
         if (!toolate)
