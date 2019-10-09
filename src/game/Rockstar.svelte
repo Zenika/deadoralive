@@ -4,8 +4,8 @@
     const dispatch = createEventDispatcher();
 
     export let rockstar;
-    export let maxtime = 6660;
 
+    let maxtime = 6660;
     let timeout;
     let nameTimeout;
     let showName;
@@ -36,8 +36,7 @@
     }
 
     const answer = (dead) => {
-        if (!toolate)
-            dispatch(dead === rockstar.dead ? 'right' : 'wrong', { timer });
+        if (!toolate) dispatch(dead === rockstar.dead ? 'right' : 'wrong', { timer });
     };
 </script>
 
