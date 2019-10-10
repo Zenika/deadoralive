@@ -27,12 +27,12 @@
             text: "Dead",
         },
         {
-            value: false,
+            value: true,
             class: "alive",
             text: "Dead",
         },
         {
-            value: true,
+            value: false,
             class: "dead",
             text: "Alive",
         },
