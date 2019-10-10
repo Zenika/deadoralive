@@ -2,7 +2,7 @@
     import shuffle from 'lodash/shuffle';
     import take from 'lodash/take';
     import Rules from './Rules.svelte';
-    import Header from './Header.svelte';
+    import Score from './Score.svelte';
     import Rockstar from './Rockstar.svelte';
     import Over from './Over.svelte';
 
@@ -36,27 +36,11 @@
     };
 </script>
 
-<style>
-    .game {
-        flex-grow: 1;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 0 1em;
-    }
-</style>
-
 {#if over}
     <Over {game} on:clearGame />
 {:else if rockstar}
-    <Header {game} />
-
-    <div class="game">
-        {#if rockstar}
-            <Rockstar {rockstar} difficulty={game.difficulty} on:right={right} on:wrong={wrong} />
-        {:else}
-            <Rules on:start={start} />
-        {/if}
-    </div>
+    <Rockstar {rockstar} difficulty={game.difficulty} on:right={right} on:wrong={wrong} />
+    <Score {game} />
 {:else}
     <Rules on:start={start} />
 {/if}
