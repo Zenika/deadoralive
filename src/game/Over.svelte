@@ -1,12 +1,17 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
-    import { db } from '../firebase';
+    import { createEventDispatcher, onMount } from 'svelte';
+    import { storeScore } from '../firebase';
 
     const dispatch = createEventDispatcher();
 
     export let game;
 
-    db.collection("score").add(game);
+    let saveScore = false;
+
+    onMount(async function() {
+        await storeScore();
+        saveScore = true;
+    })
 
     const clearGame = () => dispatch('clearGame')
 </script>
@@ -27,6 +32,8 @@
         You rock!
     </p>
     <p>
+    {#if saveScore}
         <button on:click={clearGame}>New Game</button>
+    {/if}
     </p>
 </div>

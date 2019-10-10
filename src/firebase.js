@@ -1,5 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/analytics';
+
 var firebaseConfig = {
     apiKey: "FIREBASE_API_KEY",
     authDomain: "FIREBASE_PROJECT_ID.firebaseapp.com",
@@ -9,7 +11,16 @@ var firebaseConfig = {
     measurementId: "GOOGLE_ANALYTICS"
   };
 
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+let db;
+if (firebaseConfig.apiKey) {
+  const app = firebase.initializeApp(firebaseConfig);
+  app.analytics();
+  db = app.firestore();
+}
 
-export const db = firebase.firestore();
+
+export const storeScore = async game => {
+  if (db) {
+    await db.collection("score").add(game);
+  }
+}

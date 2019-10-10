@@ -26,9 +26,9 @@ export default {
 			}
 		}),
 		replace({
-			'FIREBASE_API_KEY': process.env.FIREBASE_API_KEY,
-			'GOOGLE_ANALYTICS': process.env.GOOGLE_ANALYTICS,
-			'FIREBASE_PROJECT_ID': process.env.FIREBASE_PROJECT_ID,
+			'FIREBASE_API_KEY': process.env.FIREBASE_API_KEY || '',
+			'GOOGLE_ANALYTICS': process.env.GOOGLE_ANALYTICS || '',
+			'FIREBASE_PROJECT_ID': process.env.FIREBASE_PROJECT_ID || '',
 		}),
 
 		// If you have external dependencies installed from
@@ -40,7 +40,15 @@ export default {
 			browser: true,
 			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
 		}),
-		commonjs(),
+		commonjs({
+			namedExports: {
+				// left-hand side can be an absolute path, a path
+				// relative to the current directory, or the name
+				// of a module in node_modules
+				'node_modules/idb/build/idb.js': ['openDb'],
+				'node_modules/firebase/dist/index.cjs.js': ['initializeApp', 'firestore'],
+			},
+		}),
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
