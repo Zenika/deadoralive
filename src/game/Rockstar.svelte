@@ -26,9 +26,39 @@
             class: "dead",
             text: "Dead",
         },
+        {
+            value: false,
+            class: "alive",
+            text: "Dead",
+        },
+        {
+            value: true,
+            class: "dead",
+            text: "Alive",
+        },
+        {
+            value: false,
+            class: "alive",
+            text: "Still not dead",
+        },
+        {
+            value: true,
+            class: "dead",
+            text: "Not alive anymore",
+        },
+        {
+            value: false,
+            class: "dead",
+            text: "Still not dead",
+        },
+        {
+            value: true,
+            class: "alive",
+            text: "Not alive anymore",
+        },
     ];
-    let buttonFirst = button[0];
-    let buttonSecond = button[1];
+    let buttonFirst = buttons[0];
+    let buttonSecond = buttons[1];
     const clearAllTimeouts = () => {
         clearTimeout(timeout);
         clearTimeout(nameTimeout);
@@ -40,9 +70,9 @@
 
     $: if (rockstar) {
         if (difficulty === 'hard') {
-            button.shuffle();
-        buttonFirst = buttons.find(b => b.value === button[0].value)
-        buttonSecond = buttons.find(b => b.value !== button[0].value)
+            shuffle(buttons);
+            buttonFirst = buttons.find(b => b.value === buttons[0].value);
+            buttonSecond = buttons.find(b => b.value !== buttons[0].value);
         }
         clearAllTimeouts();
         showName = false;
