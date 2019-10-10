@@ -52,7 +52,7 @@
 
     <div class="game">
         {#if rockstar}
-            <Rockstar {rockstar} on:right={right} on:wrong={wrong} />
+            <Rockstar {rockstar} difficulty={game.difficulty} on:right={right} on:wrong={wrong} />
         {:else}
             <Rules on:start={start} />
         {/if}

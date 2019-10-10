@@ -1,9 +1,11 @@
 <script>
     import { createEventDispatcher, onDestroy } from 'svelte';
+    import shuffle from 'lodash/shuffle';
 
     const dispatch = createEventDispatcher();
 
     export let rockstar;
+    export let difficulty;
 
     let maxtime = 6660;
     let timeout;
@@ -13,7 +15,50 @@
     let timerInterval;
     let toolate;
     let toolateTimeout;
-
+    let buttons = [
+        {
+            value: false,
+            class: "alive",
+            text: "Alive",
+        },
+        {
+            value: true,
+            class: "dead",
+            text: "Dead",
+        },
+        {
+            value: true,
+            class: "alive",
+            text: "Dead",
+        },
+        {
+            value: false,
+            class: "dead",
+            text: "Alive",
+        },
+        {
+            value: false,
+            class: "alive",
+            text: "Still not dead",
+        },
+        {
+            value: true,
+            class: "dead",
+            text: "Not alive anymore",
+        },
+        {
+            value: false,
+            class: "dead",
+            text: "Still not dead",
+        },
+        {
+            value: true,
+            class: "alive",
+            text: "Not alive anymore",
+        },
+    ];
+    let buttonFirst = buttons[0];
+    let buttonSecond = buttons[1];
     const clearAllTimeouts = () => {
         clearTimeout(timeout);
         clearTimeout(nameTimeout);
@@ -24,6 +69,11 @@
     onDestroy(clearAllTimeouts);
 
     $: if (rockstar) {
+        if (difficulty === 'hard') {
+            shuffle(buttons);
+            buttonFirst = buttons.find(b => b.value === buttons[0].value);
+            buttonSecond = buttons.find(b => b.value !== buttons[0].value);
+        }
         clearAllTimeouts();
         showName = false;
         toolate = false;
@@ -76,7 +126,7 @@
 </style>
 
 <div class="container">
-    <button on:click={() => answer(true)} class="dead">Dead</button>
+    <button on:click={() => answer(buttonFirst.value)} class="{buttonFirst.class}">{buttonFirst.text}</button>
     <div class="rockstar">
         <p>
         {#if toolate}
@@ -88,5 +138,5 @@
         <p><img src={rockstar.image.src} alt="Rockstar picture"></p>
         <p style="visibility: {showName ? 'visible' : 'hidden'}">{rockstar.name}</p>
     </div>
-    <button on:click={() => answer(false)} class="alive">Alive</button>
+    <button on:click={() => answer(buttonSecond.value)} class="{buttonSecond.class}">{buttonSecond.text}</button>
 </div>
