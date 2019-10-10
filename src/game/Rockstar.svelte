@@ -15,7 +15,7 @@
     let timerInterval;
     let toolate;
     let toolateTimeout;
-    let button = [
+    let buttons = [
         {
             value: false,
             class: "alive",
@@ -27,7 +27,8 @@
             text: "Dead",
         },
     ];
-
+    let buttonFirst = button[0];
+    let buttonSecond = button[1];
     const clearAllTimeouts = () => {
         clearTimeout(timeout);
         clearTimeout(nameTimeout);
@@ -39,7 +40,9 @@
 
     $: if (rockstar) {
         if (difficulty === 'hard') {
-            button = shuffle(button);
+            button.shuffle();
+        buttonFirst = buttons.find(b => b.value === button[0].value)
+        buttonSecond = buttons.find(b => b.value !== button[0].value)
         }
         clearAllTimeouts();
         showName = false;
@@ -93,7 +96,7 @@
 </style>
 
 <div class="container">
-    <button on:click={() => answer(button[0].value)} class="{button[0].class}">{button[0].text}</button>
+    <button on:click={() => answer(buttonFirst.value)} class="{buttonFirst.class}">{buttonFirst.text}</button>
     <div class="rockstar">
         <p>
         {#if toolate}
@@ -105,5 +108,5 @@
         <p><img src={rockstar.image.src} alt="Rockstar picture"></p>
         <p style="visibility: {showName ? 'visible' : 'hidden'}">{rockstar.name}</p>
     </div>
-    <button on:click={() => answer(button[1].value)} class="{button[1].class}">{button[1].text}</button>
+    <button on:click={() => answer(buttonSecond.value)} class="{buttonSecond.class}">{buttonSecond.text}</button>
 </div>
