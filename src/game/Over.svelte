@@ -9,7 +9,7 @@
     let saveScore = false;
 
     onMount(async function() {
-        await storeScore();
+        await storeScore(game);
         saveScore = true;
     })
 

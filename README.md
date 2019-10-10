@@ -11,13 +11,23 @@
 ## Install
 
 ```sh
-npm install
+yarn
 ```
+
+### Firebase configuration
+
+(firebase configuration is optionnal, if there are no config, the score isn't stored)
+
+* Create firebase project.
+* Activate firestore database
+* Rename .env.sample to .env
+* Fill all vars with values
+* exec .env file before lauch the `yarn dev`
 
 ## Usage
 
 ```sh
-npm run dev
+yarn dev
 ```
 
 ## Deploy
@@ -29,15 +39,18 @@ Login to firebase :
 firebase login
 ```
 
+Get values from the console firebase
 Export environnement variable :
 ```sh
 export FIREBASE_API_KEY=""
 export FIREBASE_PROJECT_ID=""
 export GOOGLE_ANALYTICS=""
+export FIREBASE_MESSAGING_ID=""
+export FIREBASE_APP_ID=""
 ```
 
 ```sh
-npm run deploy
+yarn deploy
 ```
 
 ## Author

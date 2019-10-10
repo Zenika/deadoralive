@@ -8,10 +8,13 @@ var firebaseConfig = {
     databaseURL: "https://FIREBASE_PROJECT_ID.firebaseio.com",
     projectId: "FIREBASE_PROJECT_ID",
     storageBucket: "FIREBASE_PROJECT_ID.appspot.com",
-    measurementId: "GOOGLE_ANALYTICS"
+    measurementId: "GOOGLE_ANALYTICS",
+    messagingSenderId: "FIREBASE_MESSAGING_ID",
+    appId: "FIREBASE_APP_ID",
   };
 
 let db;
+console.log(firebaseConfig);
 if (firebaseConfig.apiKey) {
   const app = firebase.initializeApp(firebaseConfig);
   app.analytics();
