@@ -19,54 +19,44 @@
 </script>
 
 <style>
+    .buttons {
+        display: flex;
+        margin-top: 2.5rem;
+    }
+
+    button:first-of-type {
+        margin-right: 1rem;
+    }
+
     form {
         display: flex;
         flex-direction: column;
+        margin-top: 5rem;
+        width: 50%;
     }
 
-    input {
-        width: 520px;
-        height: 56px;
-        border: 2px solid #ffffff;
-        background-color: #000000;
-        box-sizing: border-box;
-        font-family: 'Press Start 2P';
-        color: #999999;
+    form > input {
+        background-color: var(--dark);
+        border: 2px solid var(--light);
+        color: var(--grey);
+        font-family: var(--font);
+        font-size: 1.2rem;
+        height: 3.2rem;
+        margin-bottom: 2.5rem;
         text-align: center;
+        text-transform: uppercase;
     }
 
-    .buttons {
-        display: flex;
-        margin-top: 50px;
-        justify-content: space-between;
-    }
-
-    button {
-        margin-top: 50px;
-        width: 250px;
-        height: 112px;
-        box-sizing: border-box;
-        font-family: 'Press Start 2P';
-        color: #ffffff;
-        text-align: center;
-        line-height: 32px;
-    }
-
-    button.normal {
-        border: 4px solid #ffffff;
-        background-color: #004000;
-    }
-    button.hard {
-        border: 4px solid #ffffff;
-        background-color: #400000;
+    form > input::placeholder {
+        opacity: 1;
     }
 </style>
 
 <form on:submit|preventDefault={createNewGame}>
-    <input type="text" placeholder="Name" required bind:value={game.player.name}>
-    <input type="email" placeholder="Email address" required bind:value={game.player.email}>
-    <div class="buttons">
-        <button type="submit" class="normal" on:click={() => game.difficulty = 'normal'}>Normal Game</button>
-        <button type="submit" class="hard" on:click={() => game.difficulty = 'hard'}>Hard Game</button>
-    </div>
+    <input type="text" placeholder="Your name" required bind:value={game.player.name}>
+    <input type="email" placeholder="Your email address" required bind:value={game.player.email}>
+    <span class="buttons">
+        <button class="error" type="submit" on:click={() => game.difficulty = 'normal'}>Normal Game</button>
+        <button class="success" type="submit" on:click={() => game.difficulty = 'hard'}>Hard Game</button>
+    </span>
 </form>

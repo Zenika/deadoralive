@@ -1,0 +1,23 @@
+:root {
+  --dark: #000;
+  --error: #400000;
+  --grey: #999;
+  --light: #fff;
+  --success: #004000;
+
+  --font: 'Press Start 2P', Roboto, sans-serif;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
