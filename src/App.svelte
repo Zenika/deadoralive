@@ -7,8 +7,8 @@
 	import titles from './rockstars'
 
 	let rockstars = []
-	let game = null
-	// let game = { player: { name: "test" }, score: 0 };
+	// let game = null
+	let game = { player: { name: "test" }, score: 0 };
 
 	onMount(async () => {
 		const prefetchImage = url => new Promise((resolve, reject) => {

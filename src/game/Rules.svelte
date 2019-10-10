@@ -10,37 +10,24 @@
 
 <style>
     .rules {
-        text-align: center;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        line-height: 30px;
+        font-size: 1.3rem;
+        width: 72%;
     }
 
     button {
-        margin-top: 48px;
-        width: 520px;
-        height: 112px;
-        border: 4px solid #ffffff;
-        background-color: #333333;
-        box-sizing: border-box;
-        font-family: 'Press Start 2P';
-        color: #ffffff;
-        text-align: center;
-        line-height: 32px;
-        padding: 0 125px;
-        font-size: 0.6em;
+        margin-top: 2rem;
+        padding: 2.4rem 4rem;
+    }
+
+    p {
+        margin-bottom: 2rem;
     }
 </style>
 
 <div class="rules">
-    <div>
-        <p>You have 6.66 seconds to guess if a rockstar is dead or alive.</p>
-        <p>For the first 3.33 seconds you have only the rockstar's picture, then you also have her/his name.</p>
-        <p>The faster you go, the more points you earn.</p>
-        <p>The longer your good answers streak, the more points you earn.</p>
-        <p><button on:click={start}>OK, let's rock!</button></p>
-    </div>
+    <p>You have 6.66 seconds to guess if a rockstar is dead or alive.</p>
+    <p>For the first 3.33 seconds you have only the rockstar's picture, then you also have her/his name.</p>
+    <p>The faster you go, the more points you earn.</p>
+    <p>The longer your good answers streak, the more points you earn.</p>
+    <button on:click={start}>OK, let's rock!</button>
 </div>

@@ -1,8 +1,9 @@
 :root {
   --dark: #000;
   --error: #400000;
-  --grey: #999;
+  --grey: #333;
   --light: #fff;
+  --light-grey: #999;
   --success: #004000;
 
   --font: 'Press Start 2P', Roboto, sans-serif;

@@ -38,7 +38,7 @@
     form > input {
         background-color: var(--dark);
         border: 2px solid var(--light);
-        color: var(--grey);
+        color: var(--light-grey);
         font-family: var(--font);
         font-size: 1.2rem;
         height: 3.2rem;
