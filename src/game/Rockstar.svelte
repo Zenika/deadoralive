@@ -18,42 +18,42 @@
     let buttons = [
         {
             value: false,
-            class: "alive",
+            class: "success",
             text: "Alive",
         },
         {
             value: true,
-            class: "dead",
+            class: "error",
             text: "Dead",
         },
         {
             value: true,
-            class: "alive",
+            class: "success",
             text: "Dead",
         },
         {
             value: false,
-            class: "dead",
+            class: "error",
             text: "Alive",
         },
         {
             value: false,
-            class: "alive",
+            class: "success",
             text: "Still not dead",
         },
         {
             value: true,
-            class: "dead",
+            class: "error",
             text: "Not alive anymore",
         },
         {
             value: false,
-            class: "dead",
+            class: "error",
             text: "Still not dead",
         },
         {
             value: true,
-            class: "alive",
+            class: "success",
             text: "Not alive anymore",
         },
     ];
@@ -92,51 +92,48 @@
 
 <style>
     .container {
-        text-align: center;
         display: flex;
-        align-items: center;
-        height: 100%;
         width: 100%;
-        justify-content: space-evenly;
+    }
+
+    button {
+        border: 0;
+        display: flex;
+        flex: 1;
+        flex-basis: auto;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    button > img {
+        margin-bottom: 2rem;
+        object-fit: contain;
     }
 
     .rockstar {
-        width: 40%;
-    }
-
-    .rockstar img {
-        height: auto;
-        width: 30vh;
-        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-        filter: grayscale(100%);
-    }
-
-    .container > button {
-        width: 25%;
-        color: #ffffff;
-    }
-
-    button.dead {
-        background-color: #520000;
-    }
-
-    button.alive {
-        background-color: #273800;
+        height: 400px;
+        object-fit: cover;
+        object-position: top;
+        width: 400px;
     }
 </style>
 
 <div class="container">
-    <button on:click={() => answer(buttonFirst.value)} class="{buttonFirst.class}">{buttonFirst.text}</button>
-    <div class="rockstar">
-        <p>
-        {#if toolate}
-            <div>Too late !</div>
-        {:else}
-            <progress value={maxtime - timer} max={maxtime}></progress>
-        {/if}
-        </p>
-        <p><img src={rockstar.image.src} alt="Rockstar picture"></p>
-        <p style="visibility: {showName ? 'visible' : 'hidden'}">{rockstar.name}</p>
-    </div>
-    <button on:click={() => answer(buttonSecond.value)} class="{buttonSecond.class}">{buttonSecond.text}</button>
+    <button on:click={() => answer(buttonFirst.value)} class="{buttonFirst.class}">
+        <img src="dead.png" alt="Dead">
+        {buttonFirst.text}
+    </button>
+        <img class="rockstar" src={rockstar.image.src} alt="Rockstar picture">
+<!--        <p style="visibility: {showName ? 'visible' : 'hidden'}">{rockstar.name}</p>-->
+    <button on:click={() => answer(buttonSecond.value)} class="{buttonSecond.class}">
+        <img src="alive.png" alt="Alive">
+        {buttonSecond.text}
+    </button>
+<!--    <p>-->
+<!--    {#if toolate}-->
+<!--        <div>Too late !</div>-->
+<!--    {:else}-->
+<!--        <progress value={maxtime - timer} max={maxtime}></progress>-->
+<!--    {/if}-->
+<!--        </p>-->
 </div>

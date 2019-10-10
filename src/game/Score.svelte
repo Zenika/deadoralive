@@ -6,7 +6,7 @@
     .score {
         display: flex;
         padding: 2rem;
-        width: 80%;
+        width: 100%;
     }
 
     .score > div {

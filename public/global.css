@@ -54,5 +54,5 @@ button.success {
 }
 
 p.error {
-	color: var(--error);
+	color: red;
 }
