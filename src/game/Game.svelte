@@ -47,7 +47,7 @@
 
 {#if over}
     <Over {game} on:clearGame />
-{:else}
+{:else if rockstar}
     <Header {game} />
 
     <div class="game">
@@ -57,6 +57,8 @@
             <Rules on:start={start} />
         {/if}
     </div>
+{:else}
+    <Rules on:start={start} />
 {/if}
 
 
