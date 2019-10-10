@@ -1,15 +1,9 @@
 <style>
-    .dead {
-        color: #520000;
-    }
-
-    .alive {
-        color: #273800;
+    .title {
+        position: relative;
+        top: 42px;
     }
 </style>
-
 <h1>
-    <span class="dead">Dead</span>
-    <span>or</span>
-    <span class="alive">Alive</span>
+    <img src="title.png" class="title">
 </h1>
