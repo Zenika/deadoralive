@@ -38,7 +38,7 @@
     form > input {
         background-color: var(--dark);
         border: 2px solid var(--light);
-        color: var(--light-grey);
+        color: var(--light);
         font-family: var(--font);
         font-size: 1.2rem;
         height: 3.2rem;
@@ -48,6 +48,7 @@
     }
 
     form > input::placeholder {
+        color: var(--light-grey);
         opacity: 1;
     }
 </style>

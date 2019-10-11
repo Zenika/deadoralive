@@ -13,6 +13,7 @@
         display: flex;
         flex-basis: 100%;
         flex-direction: column;
+        justify-content: flex-end;
         text-transform: uppercase;
     }
 
@@ -23,7 +24,7 @@
 </style>
 
 <div class="score">
-    <div>Player<span>{game.player.name}</span></div>
-    <div>Score<span>{game.score}</span></div>
     <div>Combo<span>{game.combo}</span></div>
+    <div>Score<span>{game.score}</span></div>
+    <div><span>{game.player.name}</span></div>
 </div>

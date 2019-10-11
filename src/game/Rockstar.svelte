@@ -79,10 +79,10 @@
         toolate = false;
         timer = maxtime;
 
-        timeout = setTimeout(() => { toolate = true }, maxtime);
-        toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
-        nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
-        timerInterval = setInterval(() => { timer -= maxtime / 6 }, maxtime / 6);
+        // timeout = setTimeout(() => { toolate = true }, maxtime);
+        // toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
+        // nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
+        // timerInterval = setInterval(() => { timer -= maxtime / 6 }, maxtime / 6);
     }
 
     const answer = (dead) => {
@@ -97,6 +97,7 @@
     }
 
     button {
+        align-items: center;
         border: 0;
         display: flex;
         flex: 1;
@@ -148,6 +149,10 @@
         bottom: 0;
         width: 100%;
         -webkit-appearance: none;
+    }
+
+    progress::-webkit-progress-bar {
+        background-color: transparent;
     }
 
     progress::-webkit-progress-value,
