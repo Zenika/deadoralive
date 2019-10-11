@@ -4,3 +4,4 @@ public/bundle.*
 .firebase
 *.log
 .env
+.idea
