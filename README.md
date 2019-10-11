@@ -11,24 +11,46 @@
 ## Install
 
 ```sh
-npm install
+yarn
 ```
+
+### Firebase configuration
+
+Firebase configuration is optional, if unavailable, player's data won't be stored.
+
+* Create firebase project
+* Activate firestore database
+* Rename .env.sample to .env
+* Fill all vars with values
+* exec .env file before lauch the `yarn dev`
 
 ## Usage
 
 ```sh
-npm run dev
+yarn dev
 ```
 
 ## Deploy
+
+Create a firebase project
 
 Login to firebase :
 ```sh
 firebase login
 ```
 
+Get values from the console firebase
+Export environnement variable :
 ```sh
-npm run deploy
+export FIREBASE_API_KEY=""
+export FIREBASE_PROJECT_ID=""
+export GOOGLE_ANALYTICS=""
+export FIREBASE_MESSAGING_ID=""
+export FIREBASE_APP_ID=""
+```
+
+```sh
+yarn deploy
 ```
 
 ## Author
