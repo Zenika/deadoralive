@@ -79,10 +79,10 @@
         toolate = false;
         timer = maxtime;
 
-        // timeout = setTimeout(() => { toolate = true }, maxtime);
-        // toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
-        // nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
-        // timerInterval = setInterval(() => { timer -= 50 }, 50);
+        timeout = setTimeout(() => { toolate = true }, maxtime);
+        toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
+        nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
+        timerInterval = setInterval(() => { timer -= 50 }, 50);
     }
 
     const answer = (dead) => {
@@ -110,11 +110,35 @@
         object-fit: contain;
     }
 
-    .rockstar {
+    figure {
+        margin: 0;
+        position: relative;
+    }
+
+    figure > img {
         height: 400px;
         object-fit: cover;
         object-position: top;
         width: 400px;
+    }
+
+    figcaption {
+        background: rgba(0,0,0,0.5);
+        font-size: 20px;
+        height: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        text-transform: uppercase;
+        top: 0;
+    }
+
+    figcaption.active {
+        height: 30px;
+        padding: 1rem;
+        opacity: 1;
+        transition: all 1s;
     }
 </style>
 
@@ -123,8 +147,10 @@
         <img src="dead.png" alt="Dead">
         {buttonFirst.text}
     </button>
-        <img class="rockstar" src={rockstar.image.src} alt="Rockstar picture">
-<!--        <p style="visibility: {showName ? 'visible' : 'hidden'}">{rockstar.name}</p>-->
+    <figure>
+        <img src={rockstar.image.src} alt="Rockstar picture">
+        <figcaption class:active={showName}>{rockstar.name}</figcaption>
+    </figure>
     <button on:click={() => answer(buttonSecond.value)} class="{buttonSecond.class}">
         <img src="alive.png" alt="Alive">
         {buttonSecond.text}
