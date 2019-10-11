@@ -82,7 +82,7 @@
         timeout = setTimeout(() => { toolate = true }, maxtime);
         toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
         nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
-        timerInterval = setInterval(() => { timer -= 50 }, 50);
+        timerInterval = setInterval(() => { timer -= maxtime / 6 }, maxtime / 6);
     }
 
     const answer = (dead) => {
@@ -135,10 +135,37 @@
     }
 
     figcaption.active {
-        height: 30px;
+        height: 50px;
         padding: 1rem;
         opacity: 1;
         transition: all 1s;
+    }
+
+    progress {
+        background-color: transparent;
+        border: 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        -webkit-appearance: none;
+    }
+
+    progress::-webkit-progress-value,
+    progress::-moz-progress-bar {
+        background-color: #007f00;
+    }
+
+    progress.danger::-webkit-progress-value,
+    progress.danger::-moz-progress-bar {
+        background-color: #7f0000;
+    }
+
+    .progress-error {
+        font-size: 18px;
+        position: absolute;
+        bottom: 0;
+        right: 5px;
+        z-index: 1;
     }
 </style>
 
@@ -155,11 +182,8 @@
         <img src="alive.png" alt="Alive">
         {buttonSecond.text}
     </button>
-<!--    <p>-->
-<!--    {#if toolate}-->
-<!--        <div>Too late !</div>-->
-<!--    {:else}-->
-<!--        <progress value={maxtime - timer} max={maxtime}></progress>-->
-<!--    {/if}-->
-<!--        </p>-->
+    {#if toolate}
+        <span class="progress-error">Too late !</span>
+    {/if}
+        <progress class:danger={timer <= (maxtime / 6)} value={maxtime - timer} max={maxtime}></progress>
 </div>
