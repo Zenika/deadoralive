@@ -88,6 +88,11 @@
     const answer = (dead) => {
         if (!toolate) dispatch(dead === rockstar.dead ? 'right' : 'wrong', { timer });
     };
+
+    const progressColor = () => {
+        if (timer <= maxtime / 6) return "error"
+        if (timer <= maxtime / 3 && timer >= maxtime / 6) return "warning"
+    }
 </script>
 
 <style>
@@ -160,9 +165,14 @@
         background-color: #007f00;
     }
 
-    progress.danger::-webkit-progress-value,
-    progress.danger::-moz-progress-bar {
+    progress.error::-webkit-progress-value,
+    progress.error::-moz-progress-bar {
         background-color: #7f0000;
+    }
+
+    progress.warning::-webkit-progress-value,
+    progress.warning::-moz-progress-bar {
+        background-color: #ff6c23;
     }
 
     .progress-error {
@@ -189,6 +199,8 @@
     </button>
     {#if toolate}
         <span class="progress-error">Too late !</span>
+        <progress class="error" value={maxtime - timer} max={maxtime}></progress>
+    {:else}
+        <progress class={progressColor} value={maxtime - timer} max={maxtime}></progress>
     {/if}
-        <progress class:danger={timer <= (maxtime / 6)} value={maxtime - timer} max={maxtime}></progress>
 </div>

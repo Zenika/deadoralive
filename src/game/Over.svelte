@@ -30,13 +30,20 @@
     }
 
     button {
-        margin-top: 6rem;
+        margin-top: 4rem;
+    }
+    h2 {
+        font-size: 3.5rem;
+        font-weight: normal;
+        margin-bottom: 3rem;
+        text-transform: uppercase;
     }
 </style>
 
 <div class="layer"></div>
 
 <div class="over">
+    <h2>Game over</h2>
     <p>Well done {game.player.name} !</p>
     <p>Your score is {game.score}</p>
     <p>Your best combo is {game.bestcombo}</p>
