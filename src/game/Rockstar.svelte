@@ -79,10 +79,10 @@
         toolate = false;
         timer = maxtime;
 
-        // timeout = setTimeout(() => { toolate = true }, maxtime);
-        // toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
-        // nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
-        // timerInterval = setInterval(() => { timer -= maxtime / 6 }, maxtime / 6);
+        timeout = setTimeout(() => { toolate = true }, maxtime);
+        toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
+        nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
+        timerInterval = setInterval(() => { timer -= maxtime / 6 }, maxtime / 6);
     }
 
     const answer = (dead) => {

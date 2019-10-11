@@ -12,13 +12,13 @@ html, body {
 body {
 	background-image: url("background.png");
 	background-size: cover;
-	box-sizing: border-box;
 	color: var(--light);
 	display: flex;
 	flex-direction: column;
 	font-family: var(--font);
 	font-size: 22px;
 	margin: 0;
+	position: relative;
 	text-align: center;
 }
 
@@ -28,6 +28,7 @@ main {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	z-index: 1;
 }
 
 button {
@@ -72,4 +73,14 @@ button.success:hover {
 
 p.error {
 	color: red;
+}
+
+.layer {
+	background-color: transparent;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 0;
 }

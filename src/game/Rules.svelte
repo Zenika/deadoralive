@@ -9,9 +9,14 @@
 </script>
 
 <style>
+    .layer {
+        background-color: rgba(0,0,0,0.4);
+    }
+
     .rules {
         font-size: 1.3rem;
         width: 72%;
+        z-index: 1;
     }
 
     button {
@@ -23,6 +28,8 @@
         margin-bottom: 2rem;
     }
 </style>
+
+<div class="layer"></div>
 
 <div class="rules">
     <p>You have 6.66 seconds to guess if a rockstar is dead or alive.</p>
