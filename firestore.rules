@@ -5,8 +5,8 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-    match /scores {
-      allow create: true;
+    match /score/{game} {
+      allow create: if true;
     }
   }
 }
