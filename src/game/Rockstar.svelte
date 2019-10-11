@@ -126,6 +126,8 @@
         object-fit: cover;
         object-position: top;
         width: 400px;
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
     }
 
     figcaption {
