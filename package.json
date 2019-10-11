@@ -34,6 +34,6 @@
     "predeploy": "run-p build",
     "deploy": "firebase deploy",
     "predeploy:ci": "run-p build",
-    "deploy:ci": "firebase deploy --token \"$FIREBASE_TOKEN\""
+    "deploy:ci": "firebase deploy --token \"$FIREBASE_TOKEN\" --project deadoralive-666"
   }
 }
