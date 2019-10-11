@@ -16,9 +16,9 @@ yarn
 
 ### Firebase configuration
 
-(firebase configuration is optionnal, if there are no config, the score isn't stored)
+Firebase configuration is optional, if unavailable, player's data won't be stored.
 
-* Create firebase project.
+* Create firebase project
 * Activate firestore database
 * Rename .env.sample to .env
 * Fill all vars with values

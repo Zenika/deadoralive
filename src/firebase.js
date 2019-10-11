@@ -14,7 +14,6 @@ var firebaseConfig = {
   };
 
 let db;
-console.log(firebaseConfig);
 if (firebaseConfig.apiKey) {
   const app = firebase.initializeApp(firebaseConfig);
   app.analytics();
@@ -24,6 +23,12 @@ if (firebaseConfig.apiKey) {
 
 export const storeScore = async game => {
   if (db) {
-    await db.collection("score").add(game);
+    try {
+      await db.collection("score").add(game);
+    } catch (e) {
+      console.error('Error while saving score for game', game, e);
+      return false;
+    }
   }
+  return true;
 }

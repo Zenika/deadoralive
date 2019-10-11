@@ -6,11 +6,10 @@
 
     export let game;
 
-    let saveScore = false;
+    let scoreSaved = false;
 
     onMount(async function() {
-        await storeScore(game);
-        saveScore = true;
+        scoreSaved = await storeScore(game);
     })
 
     const clearGame = () => dispatch('clearGame')
@@ -32,7 +31,7 @@
         You rock!
     </p>
     <p>
-    {#if saveScore}
+    {#if scoreSaved}
         <button on:click={clearGame}>New Game</button>
     {/if}
     </p>
