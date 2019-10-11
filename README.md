@@ -20,6 +20,7 @@ Firebase configuration is optional, if unavailable, player's data won't be store
 
 * Create firebase project
 * Activate firestore database
+* Activate auth with Google
 * Rename .env.sample to .env
 * Fill all vars with values
 * exec .env file before lauch the `yarn dev`

@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
 
 var firebaseConfig = {
     apiKey: "FIREBASE_API_KEY",
@@ -12,9 +13,17 @@ var firebaseConfig = {
   };
 
 let db;
+let auth
 if (firebaseConfig.apiKey) {
   const app = firebase.initializeApp(firebaseConfig);
-  db = app.firestore();
+  auth = firebase.auth();
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  googleProvider.setCustomParameters({
+    'hd': 'zenika.com'
+  })
+  auth.signInWithPopup(googleProvider).then(() => {
+    db = app.firestore();
+  });
 }
 
 

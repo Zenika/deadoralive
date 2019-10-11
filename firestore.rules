@@ -6,7 +6,7 @@ service cloud.firestore {
     }
 
     match /score/{game} {
-      allow create: if true;
+      allow create: if request.auth.token.email.matches(".*@zenika.com");
     }
   }
 }
