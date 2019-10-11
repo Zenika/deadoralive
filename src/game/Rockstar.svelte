@@ -70,7 +70,7 @@
 
     $: if (rockstar) {
         if (difficulty === 'hard') {
-            shuffle(buttons);
+            buttons = shuffle(buttons);
             buttonFirst = buttons.find(b => b.value === buttons[0].value);
             buttonSecond = buttons.find(b => b.value !== buttons[0].value);
         }
