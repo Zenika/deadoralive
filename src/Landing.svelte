@@ -57,7 +57,7 @@
     <input type="text" placeholder="Your name" required bind:value={game.player.name}>
     <input type="email" placeholder="Your email address" required bind:value={game.player.email}>
     <span class="buttons">
-        <button class="error" type="submit" on:click={() => game.difficulty = 'normal'}>Normal Game</button>
-        <button class="success" type="submit" on:click={() => game.difficulty = 'hard'}>Hard Game</button>
+        <button class="success" type="submit" on:click={() => game.difficulty = 'normal'}>Normal Game</button>
+        <button class="error" type="submit" on:click={() => game.difficulty = 'hard'}>Hard Game</button>
     </span>
 </form>

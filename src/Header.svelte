@@ -2,6 +2,7 @@
     header {
         padding: 2rem 0 0;
         text-align: center;
+        z-index: 2;
     }
 </style>
 

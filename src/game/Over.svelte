@@ -28,6 +28,10 @@
         margin-bottom: 2rem;
         text-align: center;
     }
+
+    button {
+        margin-top: 6rem;
+    }
 </style>
 
 <div class="layer"></div>
