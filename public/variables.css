@@ -1,10 +1,12 @@
 :root {
   --dark: #000;
   --error: #400000;
+  --error-hover: #bf0000;
   --grey: #333;
   --light: #fff;
   --light-grey: #999;
   --success: #004000;
+  --success-hover: #00bf00;
 
   --font: 'Press Start 2P', Roboto, sans-serif;
 }

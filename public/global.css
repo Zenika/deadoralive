@@ -43,18 +43,31 @@ button {
 	text-transform: uppercase;
 }
 
+button:hover {
+	background-color: var(--dark);
+}
+
 button.error {
 	background-color: var(--error);
+}
+
+button.error:hover {
+	background-color: var(--error-hover);
 }
 
 button.success {
 	background-color: var(--success);
 }
 
+button.success:hover {
+	background-color: var(--success-hover);
+}
+
 .loader {
 	animation: opacity 2s ease-in-out infinite;
 	margin: 0;
 	opacity: 1;
+	transform: translateY(-20%);
 }
 
 p.error {
