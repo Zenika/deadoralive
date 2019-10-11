@@ -6,22 +6,28 @@ export default [
       // Alive
         "Alanis Morrissette",
         "Björk",
+        "Cher",
         "Courtney Love",
         "Debbie Harry",
         "Dolly Parton",
+        "Grace Slick", // Jefferson Airplanes
         "Joan Baez",
         "Joan Jett",
         "Madonna (entertainer)",
         "Marianne Faithfull",
         "Nina Hagen",
         "Patti Smith",
+        "Stevie Nicks", //Fleetwood Mac
         "Tina Turner",
 
       // Dead
         "Amy Winehouse",
         "Aretha Franklin",
+        "Cass Elliot",
         "Dolores O'Riordan",
         "Donna Summer",
+        "Ella Fitzgerald",
+        "Karen Carpenter",
         "Janis Joplin",
         "Nina Simone",
         "Signe Toly Anderson",
@@ -69,12 +75,14 @@ export default [
         "Elizabeth_J._Feinler", //Create the ARPANET WHOIS
         "Adele_Goldberg_(computer_scientist)", //Developping Smaltalk
         "Marissa_Mayer", //Google et Yahoo
+        "Mitchell Baker", // Présidente de la Mozilla Foundation
 
       // Dead
         "Ada Lovelace",
         "Hedy Lamarr",
         "Grace_Hopper", //First compiler COBOL
         "Joan_Clarke", //Work on ENIGMA
+        "Jean Bartik", //ENIAC
 
     // Men
 
