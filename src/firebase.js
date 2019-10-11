@@ -1,6 +1,5 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import 'firebase/analytics';
 
 var firebaseConfig = {
     apiKey: "FIREBASE_API_KEY",
@@ -8,7 +7,6 @@ var firebaseConfig = {
     databaseURL: "https://FIREBASE_PROJECT_ID.firebaseio.com",
     projectId: "FIREBASE_PROJECT_ID",
     storageBucket: "FIREBASE_PROJECT_ID.appspot.com",
-    measurementId: "GOOGLE_ANALYTICS",
     messagingSenderId: "FIREBASE_MESSAGING_ID",
     appId: "FIREBASE_APP_ID",
   };
@@ -16,7 +14,6 @@ var firebaseConfig = {
 let db;
 if (firebaseConfig.apiKey) {
   const app = firebase.initializeApp(firebaseConfig);
-  app.analytics();
   db = app.firestore();
 }
 

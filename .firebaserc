@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "deadoralive-666"
+    "default": "deadoralive-666",
+    "dev": "deadoralive-test"
   }
 }

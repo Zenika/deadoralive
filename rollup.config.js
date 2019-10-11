@@ -27,7 +27,6 @@ export default {
 		}),
 		replace({
 			'FIREBASE_API_KEY': process.env.FIREBASE_API_KEY || '',
-			'GOOGLE_ANALYTICS': process.env.GOOGLE_ANALYTICS || '',
 			'FIREBASE_PROJECT_ID': process.env.FIREBASE_PROJECT_ID || '',
 			'FIREBASE_MESSAGING_ID': process.env.FIREBASE_MESSAGING_ID || '',
 			'FIREBASE_APP_ID': process.env.FIREBASE_APP_ID || '',
