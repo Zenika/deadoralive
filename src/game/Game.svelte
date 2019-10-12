@@ -1,4 +1,5 @@
 <script>
+    import filter from 'lodash/filter';
     import shuffle from 'lodash/shuffle';
     import take from 'lodash/take';
     import Rules from './Rules.svelte';
@@ -19,7 +20,9 @@
     };
 
     const start = () => {
-        gameRockstars = take(shuffle(rockstars), 20);
+        const deadRockstars = take(shuffle(rockstars).filter(r => r.dead), 10);
+        const aliveRockstars = take(shuffle(rockstars).filter(r => !r.dead), 10);
+        gameRockstars = shuffle(deadRockstars.concat(aliveRockstars));
         next();
     };
 
