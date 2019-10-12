@@ -103,4 +103,5 @@ export default [
         "Dennis_Ritchie", // Language C
         "Paul_Allen", //Microsoft
         "Adam_Osborne", //First portable computer
+        "Ray_Tomlinson", //E-mail
 ]
