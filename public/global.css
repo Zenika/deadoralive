@@ -10,13 +10,13 @@ html, body {
 }
 
 body {
-	background-image: url("background.png");
+	background: url("background.png") fixed no-repeat;
 	background-size: cover;
 	color: var(--light);
 	display: flex;
 	flex-direction: column;
 	font-family: var(--font);
-	font-size: 22px;
+	font-size: 20px;
 	margin: 0;
 	position: relative;
 	text-align: center;
