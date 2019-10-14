@@ -1,5 +1,6 @@
 <script>
     import { createEventDispatcher, onDestroy } from 'svelte';
+    import sample from 'lodash/sample';
     import shuffle from 'lodash/shuffle';
 
     const dispatch = createEventDispatcher();
@@ -15,50 +16,39 @@
     let timerInterval;
     let toolate;
     let toolateTimeout;
-    let buttons = [
-        {
-            value: false,
-            class: "success",
-            text: "Alive",
-        },
-        {
-            value: true,
-            class: "error",
-            text: "Dead",
-        },
-        {
-            value: true,
-            class: "success",
-            text: "Dead",
-        },
-        {
-            value: false,
-            class: "error",
-            text: "Alive",
-        },
-        {
-            value: false,
-            class: "success",
-            text: "Still not dead",
-        },
-        {
-            value: true,
-            class: "error",
-            text: "Not alive anymore",
-        },
-        {
-            value: false,
-            class: "error",
-            text: "Still not dead",
-        },
-        {
-            value: true,
-            class: "success",
-            text: "Not alive anymore",
-        },
-    ];
-    let buttonFirst = buttons[0];
-    let buttonSecond = buttons[1];
+    let answers = [false, true];
+    let buttons;
+
+    const buttonText = dead => {
+        if (difficulty === 'hard') {
+            return sample(
+                dead ? [
+                    'Not alive anymore',
+                    'R.I.P',
+                    // FIXME add some more
+                ] : [
+                    'Still not dead',
+                    // FIXME add some more
+                ]
+            );
+        }
+        return dead ? 'Dead' : 'Alive';
+    };
+
+    const buttonClass = dead => {
+        if (difficulty === 'hard') return sample(['error', 'success']);
+        return dead ? 'error' : 'success';
+    };
+
+    const buttonImage = dead => {
+        if (difficulty === 'hard') return sample(['dead.png', 'alive.png']);
+        return dead ? 'dead.png' : 'alive.png';
+    };
+
+    const buttonAnswer = i => {
+        return () => answer(buttons[i]);
+    };
+
     const clearAllTimeouts = () => {
         clearTimeout(timeout);
         clearTimeout(nameTimeout);
@@ -69,11 +59,14 @@
     onDestroy(clearAllTimeouts);
 
     $: if (rockstar) {
-        if (difficulty === 'hard') {
-            buttons = shuffle(buttons);
-            buttonFirst = buttons.find(b => b.value === buttons[0].value);
-            buttonSecond = buttons.find(b => b.value !== buttons[0].value);
-        }
+        if (difficulty === 'hard') answers = shuffle(answers);
+
+        buttons = answers.map(dead => ({
+            text: buttonText(dead),
+            class: buttonClass(dead),
+            image: buttonImage(dead),
+        }));
+
         clearAllTimeouts();
         showName = false;
         toolate = false;
@@ -82,7 +75,7 @@
         timeout = setTimeout(() => { toolate = true }, maxtime);
         toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
         nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
-        timerInterval = setInterval(() => { timer -= maxtime / 6 }, maxtime / 6);
+        timerInterval = setInterval(() => { timer -= 50 }, 50);
     }
 
     const answer = (dead) => {
@@ -90,8 +83,8 @@
     };
 
     const progressColor = () => {
-        if (timer <= maxtime / 6) return "error"
-        if (timer <= maxtime / 3 && timer >= maxtime / 6) return "warning"
+        if (timer <= maxtime / 6) return "error";
+        if (timer <= maxtime / 3 && timer >= maxtime / 6) return "warning";
     }
 </script>
 
@@ -187,17 +180,17 @@
 </style>
 
 <div class="container">
-    <button on:click={() => answer(buttonFirst.value)} class="{buttonFirst.class}">
-        <img src="dead.png" alt="Dead">
-        {buttonFirst.text}
+    <button on:click={() => answer(answers[0])} class={buttons[0].class}>
+        <img src={buttons[0].image} alt={buttons[0].text}>
+        {buttons[0].text}
     </button>
     <figure>
         <img src={rockstar.image.src} alt="Rockstar picture">
         <figcaption class:active={showName}>{rockstar.name}</figcaption>
     </figure>
-    <button on:click={() => answer(buttonSecond.value)} class="{buttonSecond.class}">
-        <img src="alive.png" alt="Alive">
-        {buttonSecond.text}
+    <button on:click={() => answer(answers[1])} class={buttons[1].class}>
+        <img src={buttons[1].image} alt={buttons[1].text}>
+        {buttons[1].text}
     </button>
     {#if toolate}
         <span class="progress-error">Too late !</span>
