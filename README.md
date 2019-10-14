@@ -54,7 +54,7 @@ export FIREBASE_APP_ID=""
 yarn deploy
 ```
 
-## Author
+## Contributors
 
 👤 **Nicolas LEPAGE**
 
@@ -76,11 +76,21 @@ yarn deploy
 
 * Github: [@yodur2potassium](https://github.com/yodur2potassium)
 
+👤 **Mireille Campourcy**
+
+* Github: [@mcampourcy](https://github.com/mcampourcy)
+
+👤 **Stéphane Cohan** UI/UX Designer
+
+* Github: [@stephanecohan](https://github.com/stephanecohan)
+
+👤 **Marie Viley** RGPD consultant
+
+* Github: [@Mayie](https://github.com/Mayie)
+
 ## Credits
  - [Svelte app template](https://github.com/sveltejs/template)
- - Title font: [Art Dystopia](https://www.facebook.com/ArtDystopia)
  - Wikipedia markup parser: [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia)
- - Background pictures: [bert sz on Unsplash](https://unsplash.com/@bertsz) and [Ethan Judd on Unsplash](https://unsplash.com/@ethanjudd)
 
 ## Show your support
 
