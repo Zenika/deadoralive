@@ -1,0 +1,8 @@
+{
+  "name": "Dead or Alive",
+  "short_name": "DoA",
+  "display": "fullscreen",
+  "background_color": "black",
+  "orientation": "landscape",
+  "theme_color": "#400000"
+}
