@@ -84,7 +84,7 @@ yarn deploy
 
 * Github: [@stephanecohan](https://github.com/stephanecohan)
 
-👤 **Marie Villey** RGPD consultant
+👤 **Marie Viley** RGPD consultant
 
 * Github: [@Mayie](https://github.com/Mayie)
 
