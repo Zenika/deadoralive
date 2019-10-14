@@ -1,6 +1,10 @@
 <script>
-    import shuffle from 'lodash/shuffle';
-    import take from 'lodash/take';
+    import flatten from 'lodash/fp/flatten';
+    import flow from 'lodash/fp/flow';
+    import map from 'lodash/fp/map';
+    import partition from 'lodash/fp/partition';
+    import shuffle from 'lodash/fp/shuffle';
+    import take from 'lodash/fp/take';
     import Rules from './Rules.svelte';
     import Score from './Score.svelte';
     import Rockstar from './Rockstar.svelte';
@@ -19,10 +23,13 @@
     };
 
     const start = () => {
-        const shuffledRockstars = shuffle(rockstars);
-        const deadRockstars = take(shuffledRockstars.filter(r => r.dead), 10);
-        const aliveRockstars = take(shuffledRockstars.filter(r => !r.dead), 10);
-        gameRockstars = shuffle(deadRockstars.concat(aliveRockstars));
+        gameRockstars = flow(
+            shuffle,
+            partition('dead'),
+            map(take(10)),
+            flatten,
+            shuffle,
+        )(rockstars);
         next();
     };
 
