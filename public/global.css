@@ -52,16 +52,8 @@ button.error {
 	background-color: var(--error);
 }
 
-button.error:hover {
-	background-color: var(--error-hover);
-}
-
 button.success {
 	background-color: var(--success);
-}
-
-button.success:hover {
-	background-color: var(--success-hover);
 }
 
 .loader {
