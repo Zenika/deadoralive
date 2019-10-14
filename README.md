@@ -80,7 +80,7 @@ yarn deploy
 
 * Github: [@mcampourcy](https://github.com/mcampourcy)
 
-👤 **Stephane Cohan** UI/UX Designer
+👤 **Stéphane Cohan** UI/UX Designer
 
 * Github: [@stephanecohan](https://github.com/stephanecohan)
 
