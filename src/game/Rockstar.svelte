@@ -16,7 +16,6 @@
     let timerInterval;
     let toolate;
     let toolateTimeout;
-<<<<<<< HEAD
     let answers = [false, true];
     let buttons;
 
@@ -53,52 +52,6 @@
         return () => answer(buttons[i]);
     };
 
-=======
-    let buttons = [
-        {
-            value: false,
-            class: "error",
-            text: "Dead",
-        },
-        {
-            value: true,
-            class: "success",
-            text: "Alive",
-        },
-        {
-            value: true,
-            class: "success",
-            text: "Dead",
-        },
-        {
-            value: false,
-            class: "error",
-            text: "Alive",
-        },
-        {
-            value: false,
-            class: "success",
-            text: "Still not dead",
-        },
-        {
-            value: true,
-            class: "error",
-            text: "Not alive anymore",
-        },
-        {
-            value: false,
-            class: "error",
-            text: "Still not dead",
-        },
-        {
-            value: true,
-            class: "success",
-            text: "Not alive anymore",
-        },
-    ];
-    let buttonFirst = buttons[0];
-    let buttonSecond = buttons[1];
->>>>>>> :lipstick: Switch dead/alive buttons
     const clearAllTimeouts = () => {
         clearTimeout(timeout);
         clearTimeout(nameTimeout);
@@ -151,15 +104,19 @@
         flex: 1;
         flex-basis: auto;
         flex-direction: column;
+        height: 300px;
+        line-height: 1.4;
         justify-content: center;
+        min-width: 33.5%
     }
 
     button > img {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         object-fit: contain;
     }
 
     figure {
+        background-color: var(--dark);
         margin: 0;
         position: relative;
     }
