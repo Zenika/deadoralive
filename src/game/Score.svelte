@@ -5,7 +5,7 @@
 <style>
     .score {
         display: flex;
-        padding: 2rem;
+        padding: 2rem 2rem 1.5rem;
         width: 100%;
     }
 

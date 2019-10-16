@@ -4,6 +4,11 @@
         text-align: center;
         z-index: 2;
     }
+
+    img {
+        margin-bottom: 1rem;
+        max-width: 70%;
+    }
 </style>
 
 <header>

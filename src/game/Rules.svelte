@@ -14,7 +14,7 @@
     }
 
     .rules {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         width: 72%;
         z-index: 1;
     }
@@ -25,7 +25,7 @@
     }
 
     p {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 </style>
 

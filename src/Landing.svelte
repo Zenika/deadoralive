@@ -42,7 +42,7 @@
         font-family: var(--font);
         font-size: 1.2rem;
         height: 3.2rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 2rem;
         text-align: center;
         text-transform: uppercase;
     }

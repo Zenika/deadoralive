@@ -104,24 +104,28 @@
         flex: 1;
         flex-basis: auto;
         flex-direction: column;
+        height: 300px;
+        line-height: 1.4;
         justify-content: center;
+        min-width: 33.5%
     }
 
     button > img {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         object-fit: contain;
     }
 
     figure {
+        background-color: var(--dark);
         margin: 0;
         position: relative;
     }
 
     figure > img {
-        height: 400px;
+        height: 300px;
         object-fit: cover;
         object-position: top;
-        width: 400px;
+        width: 300px;
         -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
         filter: grayscale(100%);
     }
