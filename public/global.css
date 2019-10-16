@@ -76,3 +76,7 @@ p.error {
 	width: 100%;
 	z-index: 0;
 }
+
+a {
+	color: var(--light-grey);
+}

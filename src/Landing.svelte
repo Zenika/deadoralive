@@ -51,6 +51,12 @@
         color: var(--light-grey);
         opacity: 1;
     }
+
+    .legalNotice {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+    }
 </style>
 
 <form on:submit|preventDefault={createNewGame}>
@@ -60,4 +66,9 @@
         <button class="success" type="submit" on:click={() => game.difficulty = 'normal'}>Normal Game</button>
         <button class="error" type="submit" on:click={() => game.difficulty = 'hard'}>Hard Game</button>
     </span>
+
+    
 </form>
+<div>
+    <a class="legalNotice" href="legalNotice.html">Mentions légales</a>
+</div>
