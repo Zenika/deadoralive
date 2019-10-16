@@ -2,6 +2,7 @@
     import { createEventDispatcher, onDestroy } from 'svelte';
     import sample from 'lodash/sample';
     import shuffle from 'lodash/shuffle';
+    import ProgressBar from "./ProgressBar.svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -75,14 +76,16 @@
         toolate = false;
         timer = maxtime;
 
-        timeout = setTimeout(() => { toolate = true }, maxtime);
+        timeout = setTimeout(() => {
+            toolate = true
+        }, maxtime);
         toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
         nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
         timerInterval = setInterval(() => { timer -= 50 }, 50);
     }
 
     const answer = (dead) => {
-        if (!toolate) dispatch(dead === rockstar.dead ? 'right' : 'wrong', { timer });
+        if (!toolate) dispatch(dead === rockstar.dead ? 'right' : 'wrong', {timer});
     };
 
     const progressColor = () => {
@@ -149,32 +152,22 @@
         transition: all 1s;
     }
 
-    progress {
+    .w3-light-grey {
         background-color: transparent;
         border: 0;
         position: absolute;
         bottom: 0;
-        width: 100%;
+        left: 0;
+        right: 0;
         -webkit-appearance: none;
     }
 
-    progress::-webkit-progress-bar {
-        background-color: transparent;
-    }
-
-    progress::-webkit-progress-value,
-    progress::-moz-progress-bar {
+    .w3-light-grey > div {
         background-color: #007f00;
     }
 
-    progress.error::-webkit-progress-value,
-    progress.error::-moz-progress-bar {
+    .w3-light-grey.error > div {
         background-color: #7f0000;
-    }
-
-    progress.warning::-webkit-progress-value,
-    progress.warning::-moz-progress-bar {
-        background-color: #ff6c23;
     }
 
     .progress-error {
@@ -201,8 +194,6 @@
     </button>
     {#if toolate}
         <span class="progress-error">Too late !</span>
-        <progress class="error" value={maxtime - timer} max={maxtime}></progress>
-    {:else}
-        <progress class={progressColor} value={maxtime - timer} max={maxtime}></progress>
     {/if}
+    <ProgressBar width={Math.round((timer / maxtime) * 100)} error={toolate} />
 </div>
