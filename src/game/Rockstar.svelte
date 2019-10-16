@@ -23,11 +23,14 @@
         if (difficulty === 'hard') {
             return sample(
                 dead ? [
+                    'Dead',
                     'Not alive anymore',
-                    'R.I.P',
+                    'R.I.P.',
                     // FIXME add some more
                 ] : [
+                    'Alive',
                     'Still not dead',
+                    'Still breathing',
                     // FIXME add some more
                 ]
             );
