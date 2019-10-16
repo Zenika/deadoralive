@@ -12,10 +12,6 @@
 
     let game = newGame();
 
-    $: if (game) {
-        console.log(game);
-    }
-
     function createNewGame() {
         dispatch('newGame', game);
         game = newGame();
@@ -25,7 +21,7 @@
 <style>
     .buttons {
         display: flex;
-        margin-top: 2.5rem;
+        margin-top: 2rem;
     }
 
     button:first-of-type {
@@ -35,8 +31,8 @@
     form {
         display: flex;
         flex-direction: column;
-        margin-top: 5rem;
-        width: 50%;
+        margin-top: 1rem;
+        width: 60%;
     }
 
     form > input {
@@ -67,7 +63,7 @@
         color: var(--light-grey);
         margin-top: 5em;
         font-size: 8px;
-        width: 60%;
+        width: 80%;
     }
 
     .newsletters {

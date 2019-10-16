@@ -60,7 +60,6 @@ button.success {
 	animation: opacity 2s ease-in-out infinite;
 	margin: 0;
 	opacity: 1;
-	transform: translateY(-20%);
 }
 
 p.error {
