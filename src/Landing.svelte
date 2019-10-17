@@ -11,6 +11,7 @@
     });
 
     let game = newGame();
+    let email = '';
 
     function preventEnter(e) {
         if (e.key === 'Enter') e.preventDefault();
@@ -18,6 +19,10 @@
 
     function setDifficulty(difficulty) {
         game.difficulty = difficulty;
+    }
+
+    function setEmail() {
+        game.player.email = email;
     }
 </script>
 
@@ -80,9 +85,10 @@
     }
 </style>
 
+
+{#if game.player.email}
 <form on:submit|preventDefault={() => dispatch('newGame', game)}>
     <input type="text" placeholder="Your name" required bind:value={game.player.name} on:keypress={preventEnter}>
-    <input type="email" placeholder="Your email address" required bind:value={game.player.email} on:keypress={preventEnter}>
     <p class="newsletters">
         Vous souhaitez recevoir des informations liées à :<br><br>
         <span class="checkboxes">
@@ -105,6 +111,15 @@
         <button class="error" type="submit" on:click={() => setDifficulty('hard')}>Hard Game</button>
     </span>
 </form>
+{:else}
+<form on:submit|preventDefault={setEmail}>
+    <input type="email" placeholder="Your email address" required bind:value={email}>
+    <span class="buttons">
+        <button class="success" type="submit">Play</button>
+    </span>
+</form>
+{/if}
+
 <p class="gdpr">
     Les informations recueillies sur ce formulaire font l’objet d’un traitement informatique destiné à la gestion du jeu concours "Dead or Alive". Les données sont uniquement destinées au service "Développement" de Zenika, ayant son siège social 10 rue de Milan 75009 Paris. Elles seront conservées pendant 6 mois.<br>
     Si vous avez coché les cases pour être recontacté par Zenika, vos informations feront l’objet d’un traitement informatique destiné à la gestion du recrutement, marketing et/ou commerce. Les données sont uniquement destinées à ces services de Zenika, ayant son siège social 10 rue de Milan 75009 Paris. Elles seront conservées pendant 2 ans.<br>
