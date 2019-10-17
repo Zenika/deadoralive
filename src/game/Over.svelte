@@ -1,18 +1,22 @@
 <script>
     import { createEventDispatcher, onMount } from 'svelte';
-    import { storeScore } from '../firebase';
+    import { isConnected, storeScore } from '../firebase';
 
     const dispatch = createEventDispatcher();
 
     export let game;
 
-    let scoreSaved = false;
+    let allowNewGame = false;
 
     onMount(async function() {
-        scoreSaved = await storeScore(game);
+        if (isConnected()) {
+            allowNewGame = await storeScore(game);
+        } else {
+            allowNewGame = true;
+        }
     })
 
-    const clearGame = () => dispatch('clearGame')
+    const newGame = () => dispatch('clearGame')
 </script>
 
 <style>
@@ -44,11 +48,11 @@
 
 <div class="over">
     <h2>Game over</h2>
-    <p>Well done {game.player.name} !</p>
+    <p>Well done {game.player.name || 'Player 1'} !</p>
     <p>Your score is {game.score}</p>
     <p>Your best combo is {game.bestcombo}</p>
     <p>You rock!</p>
-    {#if scoreSaved}
-        <button on:click={clearGame}>New Game</button>
+    {#if allowNewGame}
+        <button on:click={newGame}>New Game</button>
     {/if}
 </div>

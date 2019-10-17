@@ -2,15 +2,15 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-var firebaseConfig = {
-    apiKey: "FIREBASE_API_KEY",
-    authDomain: "FIREBASE_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://FIREBASE_PROJECT_ID.firebaseio.com",
-    projectId: "FIREBASE_PROJECT_ID",
-    storageBucket: "FIREBASE_PROJECT_ID.appspot.com",
-    messagingSenderId: "FIREBASE_MESSAGING_ID",
-    appId: "FIREBASE_APP_ID",
-  };
+const firebaseConfig = {
+  apiKey: "FIREBASE_API_KEY",
+  authDomain: "FIREBASE_PROJECT_ID.firebaseapp.com",
+  databaseURL: "https://FIREBASE_PROJECT_ID.firebaseio.com",
+  projectId: "FIREBASE_PROJECT_ID",
+  storageBucket: "FIREBASE_PROJECT_ID.appspot.com",
+  messagingSenderId: "FIREBASE_MESSAGING_ID",
+  appId: "FIREBASE_APP_ID",
+};
 
 let db;
 let auth
@@ -24,8 +24,9 @@ if (firebaseConfig.apiKey) {
   auth.signInWithPopup(googleProvider).then(() => {
     db = app.firestore();
   });
-}
+};
 
+export const isConnected = () => Boolean(db)
 
 export const storeScore = async game => {
   if (db) {

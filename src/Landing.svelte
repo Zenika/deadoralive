@@ -1,7 +1,10 @@
 <script>
     import { createEventDispatcher } from 'svelte';
+    import { isConnected } from './firebase.js';
 
     const dispatch = createEventDispatcher();
+
+    const connected = isConnected();
 
     const newGame = () => ({
         player: { newsletters: [] },
@@ -85,7 +88,7 @@
     }
 </style>
 
-
+{#if connected}
 {#if game.player.email}
 <form on:submit|preventDefault={() => dispatch('newGame', game)}>
     <input type="text" placeholder="Your name" required bind:value={game.player.name} on:keypress={preventEnter}>
@@ -125,6 +128,15 @@
     Si vous avez coché les cases pour être recontacté par Zenika, vos informations feront l’objet d’un traitement informatique destiné à la gestion du recrutement, marketing et/ou commerce. Les données sont uniquement destinées à ces services de Zenika, ayant son siège social 10 rue de Milan 75009 Paris. Elles seront conservées pendant 2 ans.<br>
     Conformément à la Loi « Informatique et Libertés » n°78-17 du 06 Janvier 1978 modifiée et au Règlement Général sur la Protection des Données, vous disposez d’un droit d’accès aux données vous concernant ou pouvez demander leur effacement. Vous disposez également d'un droit d’opposition, d’un droit de rectification, d’un droit à la portabilité et d’un droit à la limitation du traitement de vos données. Pour exercer ces droits ou pour toute question sur le traitement de vos données, sous réserve de justifier de votre identité, vous pouvez contacter notre délégué à la protection des données (DPO) : mydata@zenika.com. Si vous estimez après nous avoir contactés que vos droits ne sont pas respectés, vous pourrez à tout moment saisir l’autorité de contrôle (CNIL).
 </p>
+{:else}
+<form on:submit|preventDefault={() => dispatch('newGame', game)}>
+    <span class="buttons">
+        <button class="success" type="submit" on:click={() => setDifficulty('normal')}>Normal Game</button>
+        <button class="error" type="submit" on:click={() => setDifficulty('hard')}>Hard Game</button>
+    </span>
+</form>
+{/if}
+
 <div>
     <a class="legalNotice" href="legalNotice.html">Mentions légales</a>
 </div>
