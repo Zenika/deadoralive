@@ -12,9 +12,12 @@
 
     let game = newGame();
 
-    function createNewGame() {
-        dispatch('newGame', game);
-        game = newGame();
+    function preventEnter(e) {
+        if (e.key === 'Enter') e.preventDefault();
+    }
+
+    function setDifficulty(difficulty) {
+        game.difficulty = difficulty;
     }
 </script>
 
@@ -77,9 +80,9 @@
     }
 </style>
 
-<form on:submit|preventDefault={createNewGame}>
-    <input type="text" placeholder="Your name" required bind:value={game.player.name}>
-    <input type="email" placeholder="Your email address" required bind:value={game.player.email}>
+<form on:submit|preventDefault={() => dispatch('newGame', game)}>
+    <input type="text" placeholder="Your name" required bind:value={game.player.name} on:keypress={preventEnter}>
+    <input type="email" placeholder="Your email address" required bind:value={game.player.email} on:keypress={preventEnter}>
     <p class="newsletters">
         Vous souhaitez recevoir des informations liées à :<br><br>
         <span class="checkboxes">
@@ -98,8 +101,8 @@
         </span>
     </p>
     <span class="buttons">
-        <button class="success" type="submit" on:click={() => game.difficulty = 'normal'}>Normal Game</button>
-        <button class="error" type="submit" on:click={() => game.difficulty = 'hard'}>Hard Game</button>
+        <button class="success" type="submit" on:click={() => setDifficulty('normal')}>Normal Game</button>
+        <button class="error" type="submit" on:click={() => setDifficulty('hard')}>Hard Game</button>
     </span>
 </form>
 <p class="gdpr">
