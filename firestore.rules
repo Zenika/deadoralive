@@ -8,9 +8,5 @@ service cloud.firestore {
     match /player/{email} {
       allow read, write: if request.auth.token.email.matches(".*@zenika.com");
     }
-
-    match /score/{game} {
-      allow create: if request.auth.token.email.matches(".*@zenika.com");
-    }
   }
 }
