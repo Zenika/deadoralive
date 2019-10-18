@@ -1,19 +1,17 @@
 <script>
     import { createEventDispatcher } from 'svelte';
-    import { isConnected } from './firebase.js';
+    import { isConnected, getPlayer, createPlayer, updatePlayer } from './firebase.js';
 
     const dispatch = createEventDispatcher();
 
     const connected = isConnected();
 
-    const newGame = () => ({
-        player: { newsletters: [] },
+    let game = {
+        player: {},
         score: 0,
         combo: 0,
         bestcombo: 0,
-    });
-
-    let game = newGame();
+    };
     let email = '';
 
     function preventEnter(e) {
@@ -24,8 +22,25 @@
         game.difficulty = difficulty;
     }
 
-    function setEmail() {
-        game.player.email = email;
+    let creatingPlayer = false;
+    async function setEmail() {
+        let player = await getPlayer(email);
+        if (!player) {
+            creatingPlayer = true;
+            player = await createPlayer({
+                email,
+                newsletters: [],
+                games: [],
+            });
+        }
+        game.player = player;
+    }
+
+    let updatingPlayer = false;
+    async function newGame() {
+        updatingPlayer = true;
+        await updatePlayer(game.player);
+        dispatch('newGame', game);
     }
 </script>
 
@@ -90,7 +105,7 @@
 
 {#if connected}
 {#if game.player.email}
-<form on:submit|preventDefault={() => dispatch('newGame', game)}>
+<form on:submit|preventDefault={newGame}>
     <input type="text" placeholder="Your name" required bind:value={game.player.name} on:keypress={preventEnter}>
     <p class="newsletters">
         Vous souhaitez recevoir des informations liées à :<br><br>
@@ -116,9 +131,9 @@
 </form>
 {:else}
 <form on:submit|preventDefault={setEmail}>
-    <input type="email" placeholder="Your email address" required bind:value={email}>
+    <input type="email" placeholder="Your email address" required bind:value={email} disabled={creatingPlayer}>
     <span class="buttons">
-        <button class="success" type="submit">Play</button>
+        <button class="success" type="submit" disabled={creatingPlayer}>Play</button>
     </span>
 </form>
 {/if}
