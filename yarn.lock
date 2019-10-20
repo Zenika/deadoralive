@@ -3763,6 +3763,11 @@ supports-hyperlinks@^1.0.1:
     has-flag "^2.0.0"
     supports-color "^5.0.0"
 
+svelte-routing@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/svelte-routing/-/svelte-routing-1.4.0.tgz#09285f3c7b19f509dfb1289fbc1235b348aa7d80"
+  integrity sha512-09ypn0/vD2PcuyZEEocUHFgi7kvLOxSoUUuJZ4j3p4Y4sT/kMIWtHIRpnLdsr8bQ+sGo77sbEkO+av6yd1RjPg==
+
 svelte@^3.0.0:
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.10.0.tgz#67235e8568a0c3457de97b68496e17d68d8fefc6"

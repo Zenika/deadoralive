@@ -56,13 +56,19 @@ export const updatePlayer = player => {
   return db.collection('player').doc(player.email).set(player);
 }
 
-export const storeScore = async game => {
+export const getScoreBoard = async (difficulty) => {
   if (!db) throw Error('No DB');
-  try {
-    await db.collection('score').add(game);
-  } catch (e) {
-    console.error('Error while saving score for game', game, e);
-    return false;
-  }
-  return true;
+  const res = await db.collection('player').get();
+  const players = res.docs.map(doc => doc.data());
+  return players
+    .map(player => ({
+      ...player,
+      games: player.games.filter(game => game.difficulty === difficulty),
+    }))
+    .filter(player => player.games.length)
+    .map(player => ({
+      ...player,
+      score: player.games.reduce((maxScore, { score }) => score > maxScore ? score : maxScore, 0),
+    }))
+    .sort(({ score: score1 }, { score: score2 }) => score2 - score1)
 }
