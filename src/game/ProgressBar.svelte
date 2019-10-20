@@ -27,15 +27,7 @@
     .progress.error > span {
         background-color: #7f0000;
     }
-
-    .progress-error {
-        font-size: 18px;
-        position: absolute;
-        bottom: 0;
-        right: 5px;
-        z-index: 1;
-    }
 </style>
 <div class="progress" class:error>
-    <span style="width: {Math.round((timer / maxtime) * 100)}%">{Math.round(timer/600)}</span>
+    <span style="width: {Math.round((timer / maxtime) * 100)}%">{Math.round(timer / 1000)}</span>
 </div>
