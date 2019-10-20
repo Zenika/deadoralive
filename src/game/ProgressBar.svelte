@@ -37,5 +37,5 @@
     }
 </style>
 <div class="progress" class:error>
-    <span style="width: {Math.round((timer / maxtime) * 100)}%">{timer}</span>
+    <span style="width: {Math.round((timer / maxtime) * 100)}%">{Math.round(timer/600)}</span>
 </div>
