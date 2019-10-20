@@ -1,6 +1,6 @@
 <script>
     export let error;
-    export let width;
+    export let progress;
 
     // const progressColor = () => {
     //     if (timer <= maxtime / 6) return "error"
