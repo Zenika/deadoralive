@@ -1,11 +1,7 @@
 <script>
     export let error;
-    export let progress;
-
-    // const progressColor = () => {
-    //     if (timer <= maxtime / 6) return "error"
-    //     if (timer <= maxtime / 3 && timer >= maxtime / 6) return "warning"
-    // }
+    export let timer;
+    export let maxtime;
 </script>
 
 <style>
@@ -41,5 +37,5 @@
     }
 </style>
 <div class="progress" class:error>
-    <span style="progress: {progress}%">{progress}%</span>
+    <span style="width: {Math.round((timer / maxtime) * 100)}%">{timer}</span>
 </div>

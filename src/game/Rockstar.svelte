@@ -154,24 +154,6 @@
         transition: all 1s;
     }
 
-    .w3-light-grey {
-        background-color: transparent;
-        border: 0;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        -webkit-appearance: none;
-    }
-
-    .w3-light-grey > div {
-        background-color: #007f00;
-    }
-
-    .w3-light-grey.error > div {
-        background-color: #7f0000;
-    }
-
     .progress-error {
         font-size: 18px;
         position: absolute;
@@ -197,5 +179,5 @@
     {#if toolate}
         <span class="progress-error">Too late !</span>
     {/if}
-    <ProgressBar progress={Math.round((timer / maxtime) * 100)} error={toolate} />
+    <ProgressBar {timer} {maxtime} error={toolate} />
 </div>
