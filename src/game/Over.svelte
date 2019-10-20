@@ -6,29 +6,29 @@
 
     export let game;
 
-    let allowNewGame = false;
+    let allowClearGame = false;
 
     onMount(async function() {
         if (isConnected()) {
             try {
                 const { player, ...gameToSave } = game;
-                allowNewGame = await updatePlayer({
+                allowClearGame = await updatePlayer({
                     ...player,
                     games: [
                         ...player.games,
                         gameToSave,
                     ]
                 });
-                allowNewGame = true;
+                allowClearGame = true;
             } catch (e) {
                 console.error(e);
             }
         } else {
-            allowNewGame = true;
+            allowClearGame = true;
         }
     });
 
-    const newGame = () => dispatch('clearGame');
+    const clearGame = (keepPlayer) => dispatch('clearGame', { keepPlayer });
 </script>
 
 <style>
@@ -46,13 +46,19 @@
     }
 
     button {
-        margin-top: 4rem;
+        margin-top: 1rem;
+        width: 200px;
     }
     h2 {
         font-size: 3.5rem;
         font-weight: normal;
         margin-bottom: 3rem;
+        margin-top: 0;
         text-transform: uppercase;
+    }
+
+    h3 {
+        margin-top: 2em;
     }
 </style>
 
@@ -64,5 +70,7 @@
     <p>Your score is {game.score}</p>
     <p>Your best combo is {game.bestcombo}</p>
     <p>You rock!</p>
-    <button on:click={newGame} disabled={!allowNewGame}>New Game</button>
+    <h3>Play again ?</h3>
+    <button on:click={() => clearGame(true)} disabled={!allowClearGame} class="success">Yes</button>
+    <button on:click={() => clearGame(false)} disabled={!allowClearGame} class="error">No</button>
 </div>

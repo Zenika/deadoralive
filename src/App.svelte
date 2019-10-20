@@ -9,7 +9,7 @@
 
 	let rockstars = []
 	let game = null
-	// let game = { player: { name: "test" }, score: 0 };
+	let player = null
 
 	onMount(async () => {
 		const prefetchImage = url => new Promise((resolve, reject) => {
@@ -42,7 +42,10 @@
 		rockstars = Promise.all(titles.map(fetchRockstar))
 	})
 
-	const clearGame = () => game = null
+	const clearGame = ({ detail: { keepPlayer } }) => {
+		player = keepPlayer ? game.player : null;
+		game = null;
+	}
 </script>
 
 <Header />
@@ -57,7 +60,7 @@
 			{#if game}
 				<Game {rockstars} {game} on:clearGame={clearGame} />
 			{:else}
-				<Landing on:newGame={event => game = event.detail} />
+				<Landing on:newGame={event => game = event.detail} {player} />
 			{/if}
 		{:catch error}
 			<p class="error">{error.message}</p>

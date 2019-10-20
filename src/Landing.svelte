@@ -1,18 +1,24 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
     import { isConnected, getPlayer, createPlayer, updatePlayer } from './firebase.js';
 
     const dispatch = createEventDispatcher();
 
     const connected = isConnected();
 
-    let game = {
-        player: {},
-        score: 0,
-        combo: 0,
-        bestcombo: 0,
-    };
+    export let player;
+
+    let game;
     let email = '';
+
+    onMount(() => {
+        game = {
+            player: player || {},
+            score: 0,
+            combo: 0,
+            bestcombo: 0,
+        };
+    });
 
     function preventEnter(e) {
         if (e.key === 'Enter') e.preventDefault();
@@ -39,6 +45,7 @@
     let updatingPlayer = false;
     async function newGame() {
         updatingPlayer = true;
+        console.log(game)
         await updatePlayer(game.player);
         dispatch('newGame', game);
     }
@@ -104,7 +111,7 @@
 </style>
 
 {#if connected}
-{#if game.player.email}
+{#if game && game.player.email}
 <form on:submit|preventDefault={newGame}>
     <input type="text" placeholder="Your name" required bind:value={game.player.name} on:keypress={preventEnter} autofocus>
     <p class="newsletters">
