@@ -106,7 +106,7 @@
 {#if connected}
 {#if game.player.email}
 <form on:submit|preventDefault={newGame}>
-    <input type="text" placeholder="Your name" required bind:value={game.player.name} on:keypress={preventEnter}>
+    <input type="text" placeholder="Your name" required bind:value={game.player.name} on:keypress={preventEnter} autofocus>
     <p class="newsletters">
         Vous souhaitez recevoir des informations liées à :<br><br>
         <span class="checkboxes">
@@ -131,7 +131,7 @@
 </form>
 {:else}
 <form on:submit|preventDefault={setEmail}>
-    <input type="email" placeholder="Your email address" required bind:value={email} disabled={creatingPlayer}>
+    <input type="email" placeholder="Your email address" required bind:value={email} disabled={creatingPlayer} autofocus>
     <span class="buttons">
         <button class="success" type="submit" disabled={creatingPlayer}>Play</button>
     </span>
