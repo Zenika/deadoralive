@@ -4,7 +4,7 @@
 	import Landing from './Landing.svelte'
 	import Game from './game'
 	import titles from './rockstars'
-	import {connected} from './firebase.js'
+	import { connected } from './firebase.js'
 
 	let rockstars = []
 	let game = null

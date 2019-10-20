@@ -10,6 +10,6 @@
 <Header />
 
 <Router url="{url}">
-    <Route path="/" component={Index} />
+  <Route path="/" component={Index} />
 	<Route path="/scores" component={Scores} />
 </Router>
