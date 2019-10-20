@@ -1,20 +1,53 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
+    import { isConnected, getPlayer, createPlayer, updatePlayer } from './firebase.js';
 
     const dispatch = createEventDispatcher();
 
-    const newGame = () => ({
-        player: { newsletters: [] },
-        score: 0,
-        combo: 0,
-        bestcombo: 0,
+    const connected = isConnected();
+
+    export let player;
+
+    let game;
+    let email = '';
+
+    onMount(() => {
+        game = {
+            player: player || {},
+            score: 0,
+            combo: 0,
+            bestcombo: 0,
+        };
     });
 
-    let game = newGame();
+    function preventEnter(e) {
+        if (e.key === 'Enter') e.preventDefault();
+    }
 
-    function createNewGame() {
+    function setDifficulty(difficulty) {
+        game.difficulty = difficulty;
+    }
+
+    let creatingPlayer = false;
+    async function setEmail() {
+        let player = await getPlayer(email);
+        if (!player) {
+            creatingPlayer = true;
+            player = await createPlayer({
+                email,
+                newsletters: [],
+                games: [],
+            });
+        }
+        game.player = player;
+    }
+
+    let updatingPlayer = false;
+    async function newGame() {
+        updatingPlayer = true;
+        console.log(game)
+        await updatePlayer(game.player);
         dispatch('newGame', game);
-        game = newGame();
     }
 </script>
 
@@ -77,9 +110,10 @@
     }
 </style>
 
-<form on:submit|preventDefault={createNewGame}>
-    <input type="text" placeholder="Your name" required bind:value={game.player.name}>
-    <input type="email" placeholder="Your email address" required bind:value={game.player.email}>
+{#if connected}
+{#if game && game.player.email}
+<form on:submit|preventDefault={newGame}>
+    <input type="text" placeholder="Your name" required bind:value={game.player.name} on:keypress={preventEnter} autofocus>
     <p class="newsletters">
         Vous souhaitez recevoir des informations liées à :<br><br>
         <span class="checkboxes">
@@ -98,15 +132,33 @@
         </span>
     </p>
     <span class="buttons">
-        <button class="success" type="submit" on:click={() => game.difficulty = 'normal'}>Normal Game</button>
-        <button class="error" type="submit" on:click={() => game.difficulty = 'hard'}>Hard Game</button>
+        <button class="success" type="submit" on:click={() => setDifficulty('normal')}>Normal Game</button>
+        <button class="error" type="submit" on:click={() => setDifficulty('hard')}>Hard Game</button>
     </span>
 </form>
+{:else}
+<form on:submit|preventDefault={setEmail}>
+    <input type="email" placeholder="Your email address" required bind:value={email} disabled={creatingPlayer} autofocus>
+    <span class="buttons">
+        <button class="success" type="submit" disabled={creatingPlayer}>Play</button>
+    </span>
+</form>
+{/if}
+
 <p class="gdpr">
     Les informations recueillies sur ce formulaire font l’objet d’un traitement informatique destiné à la gestion du jeu concours "Dead or Alive". Les données sont uniquement destinées au service "Développement" de Zenika, ayant son siège social 10 rue de Milan 75009 Paris. Elles seront conservées pendant 6 mois.<br>
     Si vous avez coché les cases pour être recontacté par Zenika, vos informations feront l’objet d’un traitement informatique destiné à la gestion du recrutement, marketing et/ou commerce. Les données sont uniquement destinées à ces services de Zenika, ayant son siège social 10 rue de Milan 75009 Paris. Elles seront conservées pendant 2 ans.<br>
     Conformément à la Loi « Informatique et Libertés » n°78-17 du 06 Janvier 1978 modifiée et au Règlement Général sur la Protection des Données, vous disposez d’un droit d’accès aux données vous concernant ou pouvez demander leur effacement. Vous disposez également d'un droit d’opposition, d’un droit de rectification, d’un droit à la portabilité et d’un droit à la limitation du traitement de vos données. Pour exercer ces droits ou pour toute question sur le traitement de vos données, sous réserve de justifier de votre identité, vous pouvez contacter notre délégué à la protection des données (DPO) : mydata@zenika.com. Si vous estimez après nous avoir contactés que vos droits ne sont pas respectés, vous pourrez à tout moment saisir l’autorité de contrôle (CNIL).
 </p>
+{:else}
+<form on:submit|preventDefault={() => dispatch('newGame', game)}>
+    <span class="buttons">
+        <button class="success" type="submit" on:click={() => setDifficulty('normal')}>Normal Game</button>
+        <button class="error" type="submit" on:click={() => setDifficulty('hard')}>Hard Game</button>
+    </span>
+</form>
+{/if}
+
 <div>
     <a class="legalNotice" href="legalNotice.html">Mentions légales</a>
 </div>

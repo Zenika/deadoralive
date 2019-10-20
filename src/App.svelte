@@ -5,10 +5,11 @@
 	import Landing from './Landing.svelte'
 	import Game from './game'
 	import titles from './rockstars'
+	import {connected} from './firebase.js'
 
 	let rockstars = []
 	let game = null
-	// let game = { player: { name: "test" }, score: 0 };
+	let player = null
 
 	onMount(async () => {
 		const prefetchImage = url => new Promise((resolve, reject) => {
@@ -41,20 +42,29 @@
 		rockstars = Promise.all(titles.map(fetchRockstar))
 	})
 
-	const clearGame = () => game = null
+	const clearGame = ({ detail: { keepPlayer } }) => {
+		player = keepPlayer ? game.player : null;
+		game = null;
+	}
 </script>
 
 <Header />
 
 <main>
-	{#await rockstars}
-		<p class="loader">Loading rockstars...</p>
-	{:then rockstars}
-		{#if game}
-			<Game {rockstars} {game} on:clearGame={clearGame} />
-		{:else}
-			<Landing on:newGame={event => game = event.detail} />
-		{/if}
+	{#await connected}
+		<p class="loader">Connecting...</p>
+	{:then connected}
+		{#await rockstars}
+			<p class="loader">Loading rockstars...</p>
+		{:then rockstars}
+			{#if game}
+				<Game {rockstars} {game} on:clearGame={clearGame} />
+			{:else}
+				<Landing on:newGame={event => game = event.detail} {player} />
+			{/if}
+		{:catch error}
+			<p class="error">{error.message}</p>
+		{/await}
 	{:catch error}
 		<p class="error">{error.message}</p>
 	{/await}

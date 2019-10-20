@@ -26,5 +26,5 @@
 <div class="score">
     <div>Combo<span>{game.combo}</span></div>
     <div>Score<span>{game.score}</span></div>
-    <div><span>{game.player.name}</span></div>
+    <div><span>{game.player.name || 'Player 1'}</span></div>
 </div>
