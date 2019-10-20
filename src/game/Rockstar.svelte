@@ -148,7 +148,7 @@
     }
 
     figcaption.active {
-        height: 50px;
+        height: 65px;
         padding: 1rem;
         opacity: 1;
         transition: all 1s;

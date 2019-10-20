@@ -29,7 +29,6 @@ main {
 	justify-content: center;
 	flex-direction: column;
 	z-index: 1;
-	position: relative;
 }
 
 button {

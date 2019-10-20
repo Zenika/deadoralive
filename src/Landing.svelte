@@ -116,18 +116,6 @@
         flex: 1;
         justify-content: center;
     }
-
-    .checkboxes > span {
-        display: flex;
-    }
-
-    .checkboxes > span > label {
-        text-align: left;
-    }
-
-    .checkboxes > span > input {
-        margin: 0 1rem 0 0.5rem;
-    }
 </style>
 
 {#if connected}

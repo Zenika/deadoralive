@@ -16,7 +16,7 @@
     }
 
     .rules {
-        font-size: 1.1rem;
+        font-size: 1rem;
         width: 80%;
         z-index: 1;
     }
