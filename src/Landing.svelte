@@ -91,7 +91,7 @@
         position: absolute;
         bottom: 10px;
         left: 10px;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .gdpr {
@@ -107,6 +107,7 @@
 
     .newsletters .checkboxes {
         display: flex;
+        margin-top: 1rem;
         width: 100%;
         justify-content: space-between;
     }

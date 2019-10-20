@@ -16,18 +16,18 @@
     }
 
     .rules {
-        font-size: 1.1rem;
+        font-size: 1rem;
         width: 80%;
         z-index: 1;
     }
 
     button {
-        margin-top: 2rem;
+        margin-top: 1rem;
         padding: 2.4rem 4rem;
     }
 
     p {
-        margin-bottom: 1.3rem;
+        margin-bottom: 1rem;
     }
 
     p.hard {
