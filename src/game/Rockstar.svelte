@@ -77,7 +77,9 @@
         timer = maxtime;
 
         timeout = setTimeout(() => {
-            toolate = true
+            toolate = true;
+            clearInterval(timerInterval); // Sinon timer descend dans le négatif
+            timer = 0; // Pas sur que ce soit nécessaire mais je pense pas que timer tombe pile à 0
         }, maxtime);
         toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
         nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
