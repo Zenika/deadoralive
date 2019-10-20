@@ -41,5 +41,5 @@
     }
 </style>
 <div class="progress" class:error>
-    <span style="width: {width}%">{width}%</span>
+    <span style="progress: {progress}%">{progress}%</span>
 </div>

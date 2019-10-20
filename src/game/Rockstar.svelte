@@ -78,8 +78,8 @@
 
         timeout = setTimeout(() => {
             toolate = true;
-            clearInterval(timerInterval); // Sinon timer descend dans le négatif
-            timer = 0; // Pas sur que ce soit nécessaire mais je pense pas que timer tombe pile à 0
+            clearInterval(timerInterval);
+            timer = 0;
         }, maxtime);
         toolateTimeout = setTimeout(() => dispatch('wrong'), maxtime + 1000);
         nameTimeout = setTimeout(() => { showName = true }, maxtime / 2);
@@ -197,5 +197,5 @@
     {#if toolate}
         <span class="progress-error">Too late !</span>
     {/if}
-    <ProgressBar width={Math.round((timer / maxtime) * 100)} error={toolate} />
+    <ProgressBar progress={Math.round((timer / maxtime) * 100)} error={toolate} />
 </div>
