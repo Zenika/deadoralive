@@ -35,6 +35,7 @@
 <style>
     ol {
         margin: 2em auto;
+        font-size: 16px;
     }
 </style>
 

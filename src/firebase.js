@@ -71,4 +71,5 @@ export const getScoreBoard = async (difficulty) => {
       score: player.games.reduce((maxScore, { score }) => score > maxScore ? score : maxScore, 0),
     }))
     .sort(({ score: score1 }, { score: score2 }) => score2 - score1)
+    .slice(0, 5)
 }
