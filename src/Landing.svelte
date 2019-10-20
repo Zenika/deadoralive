@@ -159,6 +159,4 @@
 </form>
 {/if}
 
-<div>
-    <a class="legalNotice" href="legalNotice.html">Mentions légales</a>
-</div>
+<a class="legalNotice" href="legalNotice.html">Mentions légales</a>
