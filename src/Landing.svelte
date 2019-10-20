@@ -108,6 +108,13 @@
         width: 100%;
         justify-content: space-between;
     }
+
+    .newsletters .checkboxes > span {
+        display: inline-flex;
+        align-items: center;
+        flex: 1;
+        justify-content: center;
+    }
 </style>
 
 {#if connected}
