@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher, onMount } from 'svelte';
     import { isConnected, getPlayer, createPlayer, updatePlayer } from './firebase.js';
+    import LegalNotice from './LegalNotice.svelte'
 
     const dispatch = createEventDispatcher();
 
@@ -10,6 +11,7 @@
 
     let game;
     let email = '';
+    let showLegalNotice = false;
 
     onMount(() => {
         game = {
@@ -117,6 +119,12 @@
     }
 </style>
 
+{#if showLegalNotice}
+
+<LegalNotice on:back={() => showLegalNotice = false} />
+
+{:else}
+
 {#if connected}
 {#if game && game.player.email}
 <form on:submit|preventDefault={newGame}>
@@ -166,4 +174,7 @@
 </form>
 {/if}
 
-<a class="legalNotice" href="legalNotice.html">Mentions légales</a>
+<a class="legalNotice" href="#legalNotice" on:click|preventDefault={() => showLegalNotice = true}>Mentions légales</a>
+
+{/if}
+

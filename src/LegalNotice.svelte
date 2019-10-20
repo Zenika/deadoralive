@@ -1,45 +1,36 @@
+<script>
 
-<!doctype html>
-<html>
-<head>
-	<meta charset='utf8'>
-	<meta name='viewport' content='width=device-width'>
+    import { createEventDispatcher } from 'svelte';
 
-	<title>Mentions légales</title>
-	
-	<link rel='icon' type='image/png' href='/favicon.png'>
-	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap'>
-    <link rel='stylesheet' href='/global.css'>
-    
-    <style>
-        html,body {
-            height: inherit;
-        }
+    const dispatch = createEventDispatcher();
 
-        body {
-            
-            text-align: left;
-            padding: 1em;
-        }
+function goBack() {
+    dispatch('back')
+}
+</script>
 
-        h1 {
-            text-align: center;
-        }
+<style>
+    .legalNotice {
+        position: relative;
+        padding: 2em;
+        text-align: left;
+    }
 
-        .back {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-        }
-    </style>
-</head>
+    h1 {
+        text-align: center;
+    }
 
-<body>
-    <div class="back">
-        <a href="/">&lt; Retour</a>
-    </div>
+    .back {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+</style>
 
-    <h1>Mentions légales</h1>
+<div class="legalNotice">
+<a class="back" href="/" on:click|preventDefault={goBack}>&lt; Retour</a>
+
+  <h1>Mentions légales</h1>
 
     <p>
     Zenika SAS de conseil en systèmes et logiciels informatiques.<br>
@@ -85,6 +76,4 @@ Si vous estimez après nous avoir contactés que vos droits ne sont pas respect�
     <p>
 Notre préoccupation est de préserver la qualité et l’intégrité de vos données personnelles. Les technologies ainsi que les politiques de sécurité appliquées par nous-mêmes et nos prestataires techniques permettent de protéger vos données contre tout accès non autorisé, toute altération, toute destruction malveillante ou accidentelle et toute perte involontaire de données. Nous améliorons sans cesse nos procédures de sécurité au fur et à mesure de l’évolution des technologies afin de maintenir un niveau de protection maximum. Notre personnel et celui de nos sous-traitants ayant accès aux données personnelles sont soumis contractuellement à une obligation de confidentialité.
 </p>
-
-</body>
-</html>
+</div>
