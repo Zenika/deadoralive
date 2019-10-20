@@ -3,6 +3,8 @@
 
     const dispatch = createEventDispatcher();
 
+    export let difficulty;
+
     function start() {
         dispatch('start');
     }
@@ -14,8 +16,8 @@
     }
 
     .rules {
-        font-size: 1.2rem;
-        width: 72%;
+        font-size: 1.1rem;
+        width: 80%;
         z-index: 1;
     }
 
@@ -25,7 +27,11 @@
     }
 
     p {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.3rem;
+    }
+
+    p.hard {
+        color: red;
     }
 </style>
 
@@ -36,5 +42,8 @@
     <p>For the first 3.33 seconds you have only the rockstar's picture, then you also have her/his name.</p>
     <p>The faster you go, the more points you earn.</p>
     <p>The longer your good answers streak, the more points you earn.</p>
+    {#if difficulty === 'hard'}
+        <p class="hard">Hard mode: Only the button's text is right, don't trust anything else!</p>
+    {/if}
     <button on:click={start}>OK, let's rock!</button>
 </div>

@@ -52,7 +52,7 @@
     <Rockstar {rockstar} difficulty={game.difficulty} on:right={right} on:wrong={wrong} />
     <Score {game} />
 {:else}
-    <Rules on:start={start} />
+    <Rules on:start={start} difficulty={game.difficulty} />
 {/if}
 
 
