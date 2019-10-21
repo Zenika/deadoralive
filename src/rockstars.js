@@ -82,7 +82,7 @@ const titles = [
       // Dead
         "Ada Lovelace",
         "Hedy Lamarr",
-        "Grace_Hopper", //First compiler COBOL
+        // "Grace_Hopper", //First compiler COBOL
         "Joan_Clarke", //Work on ENIGMA
         "Jean Bartik", //ENIAC
 
