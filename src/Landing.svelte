@@ -93,6 +93,13 @@
         font-size: 11px;
     }
 
+    .credits {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 11px;
+    }
+
     .gdpr {
         color: var(--light-grey);
         margin-top: 5em;
@@ -169,3 +176,4 @@
 {/if}
 
 <a class="legalNotice" href="/legalNotice" use:link>Mentions légales</a>
+<a class="credits" href="/credits" use:link>Crédits</a>

@@ -4,6 +4,7 @@
   import Index from "./Index.svelte";
   import Scores from "./Scores.svelte";
   import LegalNotice from "./LegalNotice.svelte";
+  import Credits from './Credits.svelte';
   import { connected } from './firebase.js';
 
   export let url = "";
@@ -19,6 +20,7 @@
       <Route path="/" component={Index} />
       <Route path="/scores" component={Scores} />
       <Route path="/legalNotice" component={LegalNotice} />
+      <Route path="/credits" component={Credits} />
     </Router>
   {:catch error}
     <p class="error">{error.message}</p>
