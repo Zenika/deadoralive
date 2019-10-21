@@ -132,13 +132,13 @@ const fetchRockstar = async (title) => {
   const name = infobox.get('name')
 
   const imageObj = doc.images(title.img || 0)
-  if (!imageObj) throw Error(`"${title}" wikipedia page has no image`)
+  if (!imageObj) throw Error(`"${title}" wikipedia page has no image ${title.img || 0}`)
 
   const image = await prefetchImage(imageObj.thumb())
 
   return {
     name: name ? name.text() : title,
-    dead: Boolean(infobox.get('death_date')),
+    dead: Boolean(infobox.get('death_date') || infobox.get('death_place')),
     image,
   }
 }
