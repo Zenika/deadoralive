@@ -1,6 +1,6 @@
 <script>
     import { createEventDispatcher, onMount } from 'svelte';
-    import { Link } from 'svelte-routing';
+    import { link } from 'svelte-routing';
     import { isConnected, getPlayer, createPlayer, updatePlayer } from './firebase.js';
 
     const dispatch = createEventDispatcher();
@@ -168,4 +168,4 @@
 </form>
 {/if}
 
-<Link class="legalNotice" to="/legalNotice">Mentions légales</Link>
+<a class="legalNotice" href="/legalNotice" use:link>Mentions légales</a>

@@ -1,10 +1,9 @@
 <script>
-    import { Link } from 'svelte-routing';
+    import { link } from 'svelte-routing';
 </script>
 
 <style>
     .legalNotice {
-        position: relative;
         padding: 2em;
         text-align: left;
     }
@@ -12,17 +11,12 @@
     h1 {
         text-align: center;
     }
-
-    .back {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-    }
 </style>
 
 <div class="legalNotice">
-
-    <Link class="back" to="/">&lt; Retour</Link>
+<p>
+    <a href="/" use:link>&lt; Retour</a>
+</p>
 
   <h1>Mentions légales</h1>
 
