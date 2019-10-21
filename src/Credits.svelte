@@ -46,11 +46,13 @@
 </style>
 
 <div class="credits">
-<p>
-    <a href="/" use:link>&lt; Retour</a>
-</p>
+
 
   <h1>Crédits</h1>
+
+  <p>
+    <a href="/" use:link>&lt; Retour</a>
+</p>
 
   <h2>Made with</h2>
 
