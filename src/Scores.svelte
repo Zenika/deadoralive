@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import capitalize from 'lodash/capitalize';
-    import { getScoreBoard } from './firebase.js';
+    import { connected, getScoreBoard } from './firebase.js';
     
     const scores = {
         normal: [],
