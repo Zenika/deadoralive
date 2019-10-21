@@ -14,7 +14,7 @@ const titles = [
         "Dolly Parton",
         "Grace Slick", // Jefferson Airplanes
         "Joan Baez",
-        "Joan Jett",
+        {title:"Joan Jett", img:2},
         "Madonna (entertainer)",
         "Marianne Faithfull",
         "Nina Hagen",
