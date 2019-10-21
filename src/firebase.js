@@ -61,14 +61,23 @@ export const getScoreBoard = async (difficulty) => {
   const res = await db.collection('player').get();
   const players = res.docs.map(doc => doc.data());
   return players
+    // On garde seulement les 3 premières participations de chaque joueur
+    .map(player => ({
+      ...player,
+      games: player.games.slice(0, 3),
+    }))
+    // On filtre par difficulté
     .map(player => ({
       ...player,
       games: player.games.filter(game => game.difficulty === difficulty),
     }))
+    // On enlève les joueurs n'ayant pas participé avec cette difficulté
     .filter(player => player.games.length)
+    // On garde le meilleur score de chaque joueur
     .map(player => ({
       ...player,
       score: player.games.reduce((maxScore, { score }) => score > maxScore ? score : maxScore, 0),
     }))
+    // On trie du meilleur au moins bon score...
     .sort(({ score: score1 }, { score: score2 }) => score2 - score1)
 }
