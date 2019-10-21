@@ -1,4 +1,6 @@
-export default [
+import wtf from 'wtf_wikipedia'
+
+const titles = [
   // Music
 
     // Women
@@ -113,3 +115,34 @@ export default [
         "Adam_Osborne", //First portable computer
         "Ray_Tomlinson", //E-mail
 ]
+
+const prefetchImage = url => new Promise((resolve, reject) => {
+  const image = new Image()
+  image.onload = () => resolve(image)
+  image.onerror = () => reject(Error('Error while prefetching image'))
+  image.src = url
+})
+
+const fetchRockstar = async (title) => {
+  const doc = await wtf.fetch(title)
+  if (!doc) throw Error(`Unknown wikipedia page "${title}"`)
+
+  const infobox = doc.infobox(0)
+
+  const name = infobox.get('name')
+
+  const imageObj = doc.images(0)
+  if (!imageObj) throw Error(`"${title}" wikipedia page has no image`)
+
+  const image = await prefetchImage(imageObj.thumb())
+
+  return {
+    name: name ? name.text() : title,
+    dead: Boolean(infobox.get('death_date')),
+    image,
+  }
+}
+
+const rockstars = Promise.all(titles.map(fetchRockstar))
+
+export default rockstars

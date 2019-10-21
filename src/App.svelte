@@ -3,13 +3,24 @@
   import Header from './Header.svelte'
   import Index from "./Index.svelte";
   import Scores from "./Scores.svelte";
+  import LegalNotice from "./LegalNotice.svelte";
+  import { connected } from './firebase.js';
 
   export let url = "";
 </script>
 
 <Header />
 
-<Router url="{url}">
-  <Route path="/" component={Index} />
-	<Route path="/scores" component={Scores} />
-</Router>
+<main>
+  {#await connected}
+    <p class="loader">Connecting...</p>
+  {:then connected}
+    <Router url="{url}">
+      <Route path="/" component={Index} />
+      <Route path="/scores" component={Scores} />
+      <Route path="/legalNotice" component={LegalNotice} />
+    </Router>
+  {:catch error}
+    <p class="error">{error.message}</p>
+  {/await}
+</main>

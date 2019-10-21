@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import capitalize from 'lodash/capitalize';
-    import { connected, getScoreBoard } from './firebase.js';
+    import { getScoreBoard } from './firebase.js';
     
     const scores = {
         normal: [],
@@ -39,14 +39,10 @@
     }
 </style>
 
-{#await connected}
-    <p class="loader">Connecting...</p>
-{:then connected}
-    <h2>{capitalize(difficulty)}</h2>
+<h2>{capitalize(difficulty)}</h2>
 
-    <ol>
-        {#each scores[difficulty] as score}
-            <li>{score.name} {score.score}</li>
-        {/each}
-    </ol>
-{/await}
+<ol>
+    {#each scores[difficulty] as score}
+        <li>{score.name} {score.score}</li>
+    {/each}
+</ol>

@@ -1,12 +1,5 @@
 <script>
-
-    import { createEventDispatcher } from 'svelte';
-
-    const dispatch = createEventDispatcher();
-
-function goBack() {
-    dispatch('back')
-}
+    import { Link } from 'svelte-routing';
 </script>
 
 <style>
@@ -28,7 +21,8 @@ function goBack() {
 </style>
 
 <div class="legalNotice">
-<a class="back" href="/" on:click|preventDefault={goBack}>&lt; Retour</a>
+
+    <Link class="back" to="/">&lt; Retour</Link>
 
   <h1>Mentions légales</h1>
 
@@ -54,7 +48,7 @@ Hébergement : Firebase
 
 <h2>Cookies</h2>
     <p>
-<a href="https://foundation.wikimedia.org/wiki/Cookie_statement">Voir la politique de cookies de Wikimedia</a>
+<a href="https://foundation.wikimedia.org/wiki/Cookie_statement" target="_blank">Voir la politique de cookies de Wikimedia</a>
 </p>
 
 <h2>Transmission des données</h2>
