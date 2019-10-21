@@ -45,7 +45,7 @@ const titles = [
         "Mark Knopfler",
         "Mick Jagger",
         "Ozzy Osborne",
-        "Paul McCartney",
+        {title: "Paul McCartney", img: 4},
         "Pete Doherty",
         "Ringo Starr",
         "Roger Daltrey",
@@ -124,14 +124,14 @@ const prefetchImage = url => new Promise((resolve, reject) => {
 })
 
 const fetchRockstar = async (title) => {
-  const doc = await wtf.fetch(title)
+  const doc = await wtf.fetch(title.title || title)
   if (!doc) throw Error(`Unknown wikipedia page "${title}"`)
 
   const infobox = doc.infobox(0)
 
   const name = infobox.get('name')
 
-  const imageObj = doc.images(0)
+  const imageObj = doc.images(title.img || 0)
   if (!imageObj) throw Error(`"${title}" wikipedia page has no image`)
 
   const image = await prefetchImage(imageObj.thumb())
