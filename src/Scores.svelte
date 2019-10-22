@@ -13,8 +13,13 @@
     let difficulty = difficulties[0];
 
     const fetchScores = async () => {
-        scores.normal = await getScoreBoard('normal');
-        scores.hard = await getScoreBoard('hard');
+        const [normal, hard] = await Promise.all([
+            getScoreBoard('normal'),
+            getScoreBoard('hard'),
+        ]);
+        scores.normal = normal;
+        scores.hard = hard;
+        console.log(scores);
     }
 
     let difficultyIndex = 0;
